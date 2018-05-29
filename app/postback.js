@@ -54,7 +54,8 @@ function createPersistentMenu() {
 	});
 }
 
-// Will be executed when imported
-// It's being imported on index.js, should be commented out after first execution
+// Will be executed when imported (only needed once)
+// You can import it to index.js like this:
+// const postbacks = require('./postback');
 createGetStarted();
 createPersistentMenu();
