@@ -2,18 +2,20 @@ const Request = require('request');
 
 const pageToken = process.env.ACCESS_TOKEN;
 
+const flow = require('./flow');
+
 function createGetStarted() {
 	Request.post({
 		uri: `https://graph.facebook.com/v2.6/me/messenger_profile?access_token=${pageToken}`,
 		'content-type': 'application/json',
 		form: {
 			get_started: {
-				payload: 'restart',
+				payload: 'greetings',
 			},
 			greeting: [
 				{
 					locale: 'default',
-					text: 'Olá! Essa é a mensagem de Boas-vindas! Ela só aparece na janela!',
+					text: flow.greetings.welcome,
 				},
 			],
 		},
@@ -34,14 +36,24 @@ function createPersistentMenu() {
 					locale: 'default',
 					call_to_actions: [
 						{
-							type: 'web_url',
-							title: 'Nosso site',
-							url: 'https://google.com',
+							type: 'postback',
+							title: 'Sobre',
+							payload: 'about',
 						},
 						{
 							type: 'postback',
-							title: 'Ir para o Início',
-							payload: 'restart',
+							title: 'Bolsistas',
+							payload: 'scholarship',
+						},
+						// {
+						// 	type: 'postback',
+						// 	title: 'Fazer parte',
+						// 	payload: 'join',
+						// },
+						{
+							type: 'postback',
+							title: 'Voltar ao início',
+							payload: 'greetings',
 						},
 					],
 				},
