@@ -3,26 +3,50 @@ require('dotenv').config();
 const { MessengerBot } = require('bottender');
 const { createServer } = require('bottender/restify');
 
-const gsjson = require('google-spreadsheet-to-json');
-const privateKey = require('./private_key.json');
+const flow = require('./flow');
+// const postbacks = require('./postback');
 
-let dialog;
-function reload() {
-	gsjson({
-		spreadsheetId: process.env.SPREADKEY,
-		credentials: privateKey,
-		hash: 'id',
-		ignoreCol: 2,
-	}).then((result) => {
-		console.log(result);
-		dialog = result;
-	}).catch((err) => {
-		console.log(err.message);
-		console.log(err.stack);
-	});
-}
+// const gsjson = require('google-spreadsheet-to-json');
+// const privateKey = require('./private_key.json');
+// let dialog; dialog[1].texto
+// function reload() {
+// 	gsjson({
+// 		spreadsheetId: process.env.SPREADKEY,
+// 		credentials: privateKey,
+// 		hash: 'id',
+// 		ignoreCol: 2,
+// 	}).then((result) => {
+// 		console.log(result);
+// 		dialog = result;
+// 	}).catch((err) => {
+// 		console.log(err.message);
+// 		console.log(err.stack);
+// 	});
+// }
 
-reload();
+// if (context.event.isText && context.event.message.text === 'reload') {
+// 	reload();
+// }
+
+// reload();
+const menuOptions = [
+	{
+		content_type: 'text',
+		title: flow.mainMenu.menuOptions[0],
+		payload: flow.mainMenu.menuPostback[0],
+	},
+	{
+		content_type: 'text',
+		title: flow.mainMenu.menuOptions[1],
+		payload: flow.mainMenu.menuPostback[1],
+	},
+	{
+		content_type: 'text',
+		title: flow.mainMenu.menuOptions[2],
+		payload: flow.mainMenu.menuPostback[2],
+	},
+];
+
 const config = require('./bottender.config.js').messenger;
 
 const bot = new MessengerBot({
@@ -32,9 +56,65 @@ const bot = new MessengerBot({
 
 bot.onEvent(async (context) => {
 	if (!context.event.isDelivery && !context.event.isEcho) {
-		await context.sendText(dialog[1].texto);
-		if (context.event.isText && context.event.message.text === 'reload') {
-			reload();
+		if (context.event.isPostback) {
+			const { payload } = context.event.postback;
+			console.log(payload);
+			await context.setState({ dialog: payload });
+		} else if (context.event.isQuickReply) {
+			console.log(context.event.quickReply);
+			const { payload } = context.event.quickReply;
+			await context.setState({ dialog: payload });
+		} else if (context.event.isText) {
+			await context.sendText(` Você digitou ${context.event.message.text}! Calma que não te entendo ainda!`);
+			await context.setState({ dialog: 'mainMenu' });
+		}
+
+		switch (context.state.dialog) {
+		case 'greetings':
+			// await context.sendImage(flow.greetings.greetImage);
+			await context.sendText(flow.greetings.firstMessage);
+			await context.sendText(flow.greetings.secondMessage);
+			await context.sendText(flow.greetings.thirdMessage, { quick_replies: menuOptions });
+			break;
+		case 'mainMenu':
+			await context.sendText(flow.mainMenu.menuMsg, { quick_replies: menuOptions });
+			// await context.setState({ dialog: 'prompt' });
+			break;
+		case 'about':
+			await context.sendText(flow.about.firstMessage, {
+				quick_replies: [
+					{
+						content_type: 'text',
+						title: flow.about.menuOptions[0],
+						payload: flow.about.menuPostback[0],
+					},
+					{
+						content_type: 'text',
+						title: flow.about.menuOptions[1],
+						payload: flow.about.menuPostback[1],
+					},
+
+				],
+			});
+			break;
+		case 'aboutMore':
+			await context.sendText(flow.about.secondMessage);
+			await context.sendText(flow.about.thirdMessage, {
+				quick_replies: [
+					{
+						content_type: 'text',
+						title: flow.about.menuOptions[2],
+						payload: flow.about.menuPostback[2],
+					},
+				],
+			});
+			break;
+		case 'scholarship':
+			await context.sendText(flow.scholarship.thirdMessage);
+			break;
+		case 'join':
+			await context.sendText('fazer parte');
+			break;
 		}
 	}
 });

@@ -7,6 +7,7 @@
 		"rules": {
 			"no-console": 0,
 			"indent": ["error", "tab"],
-			"no-tabs": 0
+			"no-tabs": 0,
+			"default-case": 0
 	}
 }
