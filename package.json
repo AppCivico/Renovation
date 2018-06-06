@@ -7,7 +7,7 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "apiai": "^4.0.3",
+    "apiai-promise": "^1.0.0",
     "bottender": "0.14.34",
     "dotenv": "^5.0.1",
     "eslint": "^4.19.1",

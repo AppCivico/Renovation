@@ -4,6 +4,12 @@ const { MessengerBot } = require('bottender');
 const { createServer } = require('bottender/restify');
 
 const flow = require('./flow');
+
+const apiai = require('apiai-promise');
+
+const app = apiai(process.env.DIALOGFLOW_TOKEN);
+
+
 // const postbacks = require('./postback');
 
 // const gsjson = require('google-spreadsheet-to-json');
@@ -27,6 +33,7 @@ const flow = require('./flow');
 // if (context.event.isText && context.event.message.text === 'reload') {
 // 	reload();
 // }
+
 
 // reload();
 
@@ -67,8 +74,20 @@ bot.onEvent(async (context) => {
 			const { payload } = context.event.quickReply;
 			await context.setState({ dialog: payload });
 		} else if (context.event.isText) {
-			await context.sendText(` Você digitou ${context.event.message.text}! Calma que não te entendo ainda!`);
-			await context.setState({ dialog: 'mainMenu' });
+			await context.typingOn();
+			const response = await app.textRequest(context.event.message.text, {
+				sessionId: Math.random(),
+			});
+			await context.typingOff();
+
+			await context.sendText(` Você digitou ${context.event.message.text}!\nIntent: ${response.result.metadata.intentName}`);
+			console.log(response.result.metadata.intentName);
+
+			// request.on('error', (error) => {
+			// 	console.log(error);
+			// });
+
+			await context.setState({ dialog: response.result.metadata.intentName });
 		}
 
 		switch (context.state.dialog) {
