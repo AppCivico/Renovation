@@ -184,6 +184,135 @@ bot.onEvent(async (context) => {
 				],
 			});
 			break;
+		case 'course':
+			await context.sendText(flow.course.firstMessage);
+			await context.sendText(flow.course.secondMessage);
+			await context.sendText(flow.course.excuseMe);
+			await context.sendText(flow.course.menuMsg, {
+				quick_replies: [
+					{
+						content_type: 'text',
+						title: flow.course.menuOptions[0],
+						payload: flow.course.menuPostback[0],
+					},
+					{
+						content_type: 'text',
+						title: flow.course.menuOptions[1],
+						payload: flow.course.menuPostback[1],
+					},
+
+				],
+			});
+			break;
+		case 'courseMore':
+			await context.sendText(flow.course.thirdMessage);
+			await context.sendText(flow.course.fourthMessage);
+			await context.sendText(flow.course.fifthMessage);
+			await context.sendText(flow.course.endMessage, { quick_replies: menuOptions });
+			break;
+		case 'courseEnd':
+			await context.sendText(flow.course.endMessage, { quick_replies: menuOptions });
+			break;
+		case 'subscription':
+			await context.sendText(flow.subscription.firstMessage);
+			await context.sendText(flow.subscription.secondMessage);
+			await context.sendText(flow.subscription.endMessage, { quick_replies: menuOptions });
+			break;
+		case 'position':
+			await context.sendText(flow.position.firstMessage);
+			await context.sendText(flow.position.secondMessage);
+			await context.sendText(flow.position.site);
+			await context.sendText(flow.position.endMessage, { quick_replies: menuOptions });
+			break;
+		case 'payment':
+			await context.sendText(flow.payment.firstMessage);
+			await context.sendText(flow.payment.secondMessage);
+			await context.sendText(flow.payment.thirdMessage);
+			await context.sendText(flow.payment.menuMsg, {
+				quick_replies: [
+					{
+						content_type: 'text',
+						title: flow.payment.menuOptions[0],
+						payload: flow.payment.menuPostback[0],
+					},
+					{
+						content_type: 'text',
+						title: flow.payment.menuOptions[1],
+						payload: flow.payment.menuPostback[1],
+					},
+
+				],
+			});
+			break;
+		case 'paymentMore':
+			await context.sendText(flow.payment.fourthMessage);
+			await context.sendText(flow.payment.fifthMessage, {
+				quick_replies: [
+					{
+						content_type: 'text',
+						title: flow.payment.menuOptions[2],
+						payload: flow.payment.menuPostback[2],
+					},
+					{
+						content_type: 'text',
+						title: flow.payment.menuOptions[1],
+						payload: flow.payment.menuPostback[1],
+					},
+
+				],
+			});
+			break;
+		case 'paymentEnd':
+			await context.sendText(flow.course.endMessage, { quick_replies: menuOptions });
+			break;
+		case 'paymentRules':
+			await context.sendText(flow.payment.firstRule);
+			await context.sendText(flow.payment.secondRule);
+			await context.sendText(flow.payment.thirdRule);
+			await context.sendText(flow.payment.fourthRule);
+			await context.sendText(flow.course.endMessage, { quick_replies: menuOptions });
+			break;
+		case 'interview':
+			await context.sendText(flow.interview.firstMessage);
+			await context.sendText(flow.interview.secondMessage);
+			await context.sendText(flow.interview.thirdMessage, {
+				quick_replies: [
+					{
+						content_type: 'text',
+						title: flow.interview.menuOptions[0],
+						payload: flow.interview.menuPostback[0],
+					},
+					{
+						content_type: 'text',
+						title: flow.interview.menuOptions[1],
+						payload: flow.interview.menuPostback[1],
+					},
+
+				],
+			});
+			break;
+		case 'interviewMore':
+			await context.sendText(flow.interview.fourthMessage);
+			await context.sendText(flow.interview.fifthMessage);
+			await context.sendText(flow.interview.menuMsg);
+			await context.sendText(flow.interview.endMessage, { quick_replies: menuOptions });
+			break;
+		case 'interviewEnd':
+			await context.sendText(flow.course.endMessage, { quick_replies: menuOptions });
+			break;
+		case 'financing':
+			await context.sendText(flow.financing.firstMessage);
+			await context.sendText(flow.financing.secondMessage);
+			await context.sendText(flow.financing.thirdMessage);
+			await context.sendText(flow.financing.site);
+			await context.sendText(flow.financing.endMessage, { quick_replies: menuOptions });
+			break;
+		case 'error':
+			await context.sendText(flow.error.firstMessage);
+			await context.sendText(flow.error.secondMessage);
+			await context.sendText(flow.error.thirdMessage);
+			await context.sendText(flow.error.menuMsg, { quick_replies: menuOptions });
+			break;
 		}
 	}
 });
