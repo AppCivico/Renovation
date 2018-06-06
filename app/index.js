@@ -29,6 +29,8 @@ const flow = require('./flow');
 // }
 
 // reload();
+
+
 const menuOptions = [
 	{
 		content_type: 'text',
@@ -110,10 +112,58 @@ bot.onEvent(async (context) => {
 			});
 			break;
 		case 'scholarship':
+			await context.sendText(flow.scholarship.firstMessage);
+			await context.sendText(flow.scholarship.secondMessage);
+			await context.sendText(flow.scholarship.image);
+			await context.sendText(flow.scholarship.menuMsg, {
+				quick_replies: [
+					{
+						content_type: 'text',
+						title: flow.scholarship.menuOptions[0],
+						payload: flow.scholarship.menuPostback[0],
+					},
+					{
+						content_type: 'text',
+						title: flow.scholarship.menuOptions[1],
+						payload: flow.scholarship.menuPostback[1],
+					},
+
+				],
+			});
+			break;
+		case 'scholarshipMore':
 			await context.sendText(flow.scholarship.thirdMessage);
+			await context.sendText(flow.scholarship.fourthMessage);
+			await context.sendText(flow.scholarship.extraMessage);
+			await context.sendText(flow.scholarship.endMessage, { quick_replies: menuOptions });
+			break;
+		case 'scholarshipEnd':
+			await context.sendText(flow.scholarship.extraMessage);
+			await context.sendText(flow.scholarship.endMessage, { quick_replies: menuOptions });
 			break;
 		case 'join':
-			await context.sendText('fazer parte');
+			await context.sendText(flow.join.firstMessage);
+			await context.sendText(flow.join.secondMessage);
+			await context.sendText(flow.join.menuMsg, {
+				quick_replies: [
+					{
+						content_type: 'text',
+						title: flow.join.menuOptions[0],
+						payload: flow.join.menuPostback[0],
+					},
+					{
+						content_type: 'text',
+						title: flow.join.menuOptions[1],
+						payload: flow.join.menuPostback[1],
+					},
+					{
+						content_type: 'text',
+						title: flow.join.menuOptions[2],
+						payload: flow.join.menuPostback[2],
+					},
+
+				],
+			});
 			break;
 		}
 	}
