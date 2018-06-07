@@ -1,7 +1,6 @@
-// This class stores text messages, urls and quick_replies options_check
+// This class stores text messages, urls and quick_replies
 
 const emoji = require('node-emoji');
-
 
 module.exports = {
 	greetings: {
@@ -44,6 +43,10 @@ module.exports = {
 		// -- end
 		extraMessage: 'Legal, né?',
 		endMessage: `Vamos conversar mais! Você pode me perguntar algo digitando uma palavra-chave ou escolher as opções. ${emoji.get('wink')}`,
+		// -- attachment
+		siteURL: 'http://renovabr.org/bolsistas/',
+		imageURL: 'http://renovabr.org/wp-content/uploads/2018/04/brasil-tem-jeito.png',
+		siteTitle: 'Líderes | RenovaBR',
 	},
 	course: {
 		firstMessage: 'O curso do RenovaBR mescla aulas presenciais e à distância. A carga horária total é de 240 horas. Para seguir no projeto até julho, prazo final do curso, os alunos terão de cumprir carga horária mínima de 200 horas e ter 80% de aprovação das avaliações feitas ao longo do semestre, além de seguirem alinhados com o propósito do RenovaBR de trabalhar pela ética, democracia e vontade de servir à sociedade.',
@@ -96,6 +99,10 @@ module.exports = {
 		'Temos lideranças de diversos espectros políticos, dá uma olhada aqui para conhecê-los melhor:',
 		site: '<link do site aqui>',
 		endMessage: `Vamos conversar mais! Você pode me perguntar algo digitando uma palavra-chave ou escolher as opções. ${emoji.get('wink')}`,
+		// -- attachment
+		siteURL: 'http://renovabr.org/bolsistas/',
+		imageURL: 'http://renovabr.org/wp-content/uploads/2018/04/brasil-tem-jeito.png',
+		siteTitle: 'Líderes | RenovaBR',
 	},
 	interview: {
 		firstMessage: `Mais de 4 mil pessoas de todos os estados se inscreveram pelo site do RenovaBR entre outubro e novembro de 2017. ${emoji.get('scream')}`,
@@ -115,8 +122,11 @@ module.exports = {
 		firstMessage: 'O RenovaBR se mantém através das doações de pessoas físicas interessadas em apoiar um programa de renovação política feito com qualidade.',
 		secondMessage: 'Os doadores não têm nenhum contato com as lideranças do RenovaBR.',
 		thirdMessage: 'Todos podem doar por meio do financiamento coletivo no site:',
-		site: '<link do site aqui>',
 		endMessage: `Vamos conversar mais! Você pode me perguntar algo digitando uma palavra-chave ou escolher as opções. ${emoji.get('wink')}`,
+		// -- attachment
+		siteURL: 'https://www.kickante.com.br/campanhas/renovabr-novos-politicos-no-brasil',
+		imageURL: 'https://www.kickante.com.br/sites/default/files/styles/campaign_pitch_image/public/financiamento-coletivo/pitch/vamos_renovar_a_politica_do_brasil-717728.png?itok=4h6djkP6',
+		siteTitle: 'Vamos renovar a política do Brasil',
 	},
 	error: {
 		firstMessage: `Eu não entendi, me desculpa? ${emoji.get('pensive')}`,

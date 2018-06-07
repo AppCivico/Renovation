@@ -3,40 +3,13 @@ require('dotenv').config();
 const { MessengerBot } = require('bottender');
 const { createServer } = require('bottender/restify');
 
-const flow = require('./flow');
-
 const apiai = require('apiai-promise');
 
+const flow = require('./flow');
+// const mailer = require('./mailer');
+const attach = require('./attach');
+
 const app = apiai(process.env.DIALOGFLOW_TOKEN);
-
-
-// const postbacks = require('./postback');
-
-// const gsjson = require('google-spreadsheet-to-json');
-// const privateKey = require('./private_key.json');
-// let dialog; dialog[1].texto
-// function reload() {
-// 	gsjson({
-// 		spreadsheetId: process.env.SPREADKEY,
-// 		credentials: privateKey,
-// 		hash: 'id',
-// 		ignoreCol: 2,
-// 	}).then((result) => {
-// 		console.log(result);
-// 		dialog = result;
-// 	}).catch((err) => {
-// 		console.log(err.message);
-// 		console.log(err.stack);
-// 	});
-// }
-
-// if (context.event.isText && context.event.message.text === 'reload') {
-// 	reload();
-// }
-
-
-// reload();
-
 
 const menuOptions = [
 	{
@@ -76,16 +49,12 @@ bot.onEvent(async (context) => {
 		} else if (context.event.isText) {
 			await context.typingOn();
 			const response = await app.textRequest(context.event.message.text, {
-				sessionId: Math.random(),
+				sessionId: context.session.user.id,
 			});
 			await context.typingOff();
-
-			await context.sendText(` Você digitou ${context.event.message.text}!\nIntent: ${response.result.metadata.intentName}`);
+			// await context.sendText(` Você digitou ${context.event.message.text}` +
+			// `!\nIntent: ${response.result.metadata.intentName}`);
 			console.log(response.result.metadata.intentName);
-
-			// request.on('error', (error) => {
-			// 	console.log(error);
-			// });
 
 			await context.setState({ dialog: response.result.metadata.intentName });
 		}
@@ -99,7 +68,6 @@ bot.onEvent(async (context) => {
 			break;
 		case 'mainMenu':
 			await context.sendText(flow.mainMenu.menuMsg, { quick_replies: menuOptions });
-			// await context.setState({ dialog: 'prompt' });
 			break;
 		case 'about':
 			await context.sendText(flow.about.firstMessage, {
@@ -133,7 +101,8 @@ bot.onEvent(async (context) => {
 		case 'scholarship':
 			await context.sendText(flow.scholarship.firstMessage);
 			await context.sendText(flow.scholarship.secondMessage);
-			await context.sendText(flow.scholarship.image);
+			await attach.send(context, flow.scholarship);
+
 			await context.sendText(flow.scholarship.menuMsg, {
 				quick_replies: [
 					{
@@ -221,8 +190,7 @@ bot.onEvent(async (context) => {
 		case 'position':
 			await context.sendText(flow.position.firstMessage);
 			await context.sendText(flow.position.secondMessage);
-			await context.sendText(flow.position.site);
-			await context.sendText(flow.position.endMessage, { quick_replies: menuOptions });
+			await attach.sendMenu(context, flow.position);
 			break;
 		case 'payment':
 			await context.sendText(flow.payment.firstMessage);
@@ -304,10 +272,13 @@ bot.onEvent(async (context) => {
 			await context.sendText(flow.financing.firstMessage);
 			await context.sendText(flow.financing.secondMessage);
 			await context.sendText(flow.financing.thirdMessage);
-			await context.sendText(flow.financing.site);
-			await context.sendText(flow.financing.endMessage, { quick_replies: menuOptions });
+			await attach.sendMenu(context, flow.financing);
 			break;
 		case 'error':
+			// mailer.sendMail(
+			// 	`${context.session.user.first_name} ${context.session.user.last_name}`,
+			// 	context.event.message.text // eslint-disable-line comma-dangle
+			// );
 			await context.sendText(flow.error.firstMessage);
 			await context.sendText(flow.error.secondMessage);
 			await context.sendText(flow.error.thirdMessage);
