@@ -1,3 +1,8 @@
+// Class for generating get_started button, welcome message and persistent menu
+// Will be executed when imported (only needed once)
+// You can import it to index.js like this:
+// const postbacks = require('./postback');
+
 const Request = require('request');
 
 const pageToken = process.env.ACCESS_TOKEN;
@@ -45,16 +50,16 @@ function createPersistentMenu() {
 							title: 'Bolsistas',
 							payload: 'scholarship',
 						},
-						// {
-						// 	type: 'postback',
-						// 	title: 'Fazer parte',
-						// 	payload: 'join',
-						// },
 						{
 							type: 'postback',
-							title: 'Voltar ao início',
-							payload: 'greetings',
+							title: 'Fazer parte',
+							payload: 'join',
 						},
+						// {
+						// 	type: 'postback',
+						// 	title: 'Voltar ao início',
+						// 	payload: 'greetings',
+						// },
 					],
 				},
 			],
@@ -66,8 +71,5 @@ function createPersistentMenu() {
 	});
 }
 
-// Will be executed when imported (only needed once)
-// You can import it to index.js like this:
-// const postbacks = require('./postback');
 createGetStarted();
 createPersistentMenu();
