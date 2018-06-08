@@ -63,3 +63,46 @@ async function send(context, links) {
 
 module.exports.send = send;
 
+async function sendCarousel(context, links) {
+	await context.sendAttachment({
+		type: 'template',
+		payload: {
+			template_type: 'generic',
+			elements: [
+				{
+					title: links.siteTitle[0],
+					image_url: links.imageURL[0],
+					// subtitle: 'dasd',
+					default_action: {
+						type: 'web_url',
+						url: links.siteURL[0],
+						messenger_extensions: 'false',
+						webview_height_ratio: 'full',
+						// fallback_url: 'www.google.com',
+					},
+					// buttons: [
+					// 				{
+					// 		type: 'postback',
+					// 		title: links.button,
+					// 		payload: links.postback,
+					// 	},
+					// ],
+				},
+				{
+					title: links.siteTitle[1],
+					image_url: links.imageURL[1],
+					// subtitle: 'dasd',
+					default_action: {
+						type: 'web_url',
+						url: links.siteURL[1],
+						messenger_extensions: 'false',
+						webview_height_ratio: 'full',
+						// fallback_url: 'www.google.com',
+					},
+				},
+			],
+		},
+	});
+}
+
+module.exports.sendCarousel = sendCarousel;
