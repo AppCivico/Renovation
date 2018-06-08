@@ -5,8 +5,9 @@ const { createServer } = require('bottender/restify');
 
 const apiai = require('apiai-promise');
 
+// const postbacks = require('./postback');
+const mailer = require('./mailer');
 const flow = require('./flow');
-// const mailer = require('./mailer');
 const attach = require('./attach');
 
 const app = apiai(process.env.DIALOGFLOW_TOKEN);
@@ -29,6 +30,9 @@ const menuOptions = [
 	},
 ];
 
+let userDoubt = '';
+let userMail = '';
+
 const config = require('./bottender.config.js').messenger;
 
 const bot = new MessengerBot({
@@ -37,7 +41,7 @@ const bot = new MessengerBot({
 });
 
 bot.onEvent(async (context) => {
-	if (!context.event.isDelivery && !context.event.isEcho) {
+	if (!context.event.isDelivery && !context.event.isEcho && !context.event.isRead) {
 		if (context.event.isPostback) {
 			const { payload } = context.event.postback;
 			console.log(payload);
@@ -47,21 +51,31 @@ bot.onEvent(async (context) => {
 			const { payload } = context.event.quickReply;
 			await context.setState({ dialog: payload });
 		} else if (context.event.isText) {
-			await context.typingOn();
-			const response = await app.textRequest(context.event.message.text, {
-				sessionId: context.session.user.id,
-			});
-			await context.typingOff();
-			// await context.sendText(` Você digitou ${context.event.message.text}` +
-			// `!\nIntent: ${response.result.metadata.intentName}`);
-			console.log(response.result.metadata.intentName);
+			if (context.state.dialog === 'listeningDoubt') {
+				userDoubt = context.event.message.text;
+				await context.setState({ dialog: 'email' });
+			}
+			if (context.state.dialog === 'listeningEmail') {
+				userMail = context.event.message.text;
+				await context.setState({ dialog: 'send' });
+			}
+			if (context.state.dialog !== 'doubt' && context.state.dialog !== 'email' && context.state.dialog !== 'send') {
+				await context.typingOn();
+				const response = await app.textRequest(context.event.message.text, {
+					sessionId: context.session.user.id,
+				});
+				// await context.sendText(` Você digitou ${context.event.message.text}` +
+				// `!\nIntent: ${response.result.metadata.intentName}`);
+				// console.log(response.result.metadata.intentName);
 
-			await context.setState({ dialog: response.result.metadata.intentName });
+				await context.setState({ dialog: response.result.metadata.intentName });
+			}
 		}
+
 
 		switch (context.state.dialog) {
 		case 'greetings':
-			// await context.sendImage(flow.greetings.greetImage);
+			await context.sendImage(flow.greetings.greetImage);
 			await context.sendText(flow.greetings.firstMessage);
 			await context.sendText(flow.greetings.secondMessage);
 			await context.sendText(flow.greetings.thirdMessage, { quick_replies: menuOptions });
@@ -132,6 +146,7 @@ bot.onEvent(async (context) => {
 		case 'join':
 			await context.sendText(flow.join.firstMessage);
 			await context.sendText(flow.join.secondMessage);
+			await attach.sendCarousel(context, flow.join);
 			await context.sendText(flow.join.menuMsg, {
 				quick_replies: [
 					{
@@ -139,17 +154,6 @@ bot.onEvent(async (context) => {
 						title: flow.join.menuOptions[0],
 						payload: flow.join.menuPostback[0],
 					},
-					{
-						content_type: 'text',
-						title: flow.join.menuOptions[1],
-						payload: flow.join.menuPostback[1],
-					},
-					{
-						content_type: 'text',
-						title: flow.join.menuOptions[2],
-						payload: flow.join.menuPostback[2],
-					},
-
 				],
 			});
 			break;
@@ -279,10 +283,64 @@ bot.onEvent(async (context) => {
 			// 	`${context.session.user.first_name} ${context.session.user.last_name}`,
 			// 	context.event.message.text // eslint-disable-line comma-dangle
 			// );
+			await context.typingOff();
 			await context.sendText(flow.error.firstMessage);
 			await context.sendText(flow.error.secondMessage);
 			await context.sendText(flow.error.thirdMessage);
-			await context.sendText(flow.error.menuMsg, { quick_replies: menuOptions });
+			// await context.sendText(flow.error.menuMsg, { quick_replies: menuOptions });
+			await context.sendText(flow.error.askContact, {
+				quick_replies: [
+					{
+						content_type: 'text',
+						title: flow.error.menuOptions[0],
+						payload: flow.error.menuPostback[0],
+					},
+					{
+						content_type: 'text',
+						title: flow.error.menuOptions[1],
+						payload: flow.error.menuPostback[1],
+					},
+				],
+			});
+			break;
+		case 'doubt':
+			await context.sendText(flow.doubt.firstMessage);
+			await context.sendText(flow.doubt.secondMessage, {
+				quick_replies: [
+					{
+						content_type: 'text',
+						title: flow.doubt.menuOptions[0],
+						payload: flow.doubt.menuPostback[0],
+					},
+				],
+			});
+			await context.setState({ dialog: 'listeningDoubt' });
+			break;
+		case 'email':
+			await context.sendText(flow.email.firstMessage);
+			await context.sendText(flow.email.secondMessage, {
+				quick_replies: [
+					{
+						content_type: 'text',
+						title: flow.email.menuOptions[0],
+						payload: flow.email.menuPostback[0],
+					},
+				],
+			});
+			await context.setState({ dialog: 'listeningEmail' });
+			break;
+		case 'send':
+			console.log('email', userMail);
+			console.log('doubt', userDoubt);
+			mailer.sendDoubt(
+				`${context.session.user.first_name} ${context.session.user.last_name}`,
+				userDoubt, userMail // eslint-disable-line comma-dangle
+			);
+			userDoubt = '';
+			userMail = '';
+			await context.sendText(flow.email.endMessage);
+			await context.sendText(flow.mainMenu.menuMsg, { quick_replies: menuOptions });
+
 			break;
 		}
 	}
