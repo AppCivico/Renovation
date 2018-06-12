@@ -138,6 +138,14 @@ module.exports = {
 		imageURL: 'https://www.kickante.com.br/sites/default/files/styles/campaign_pitch_image/public/financiamento-coletivo/pitch/vamos_renovar_a_politica_do_brasil-717728.png?itok=4h6djkP6',
 		siteTitle: 'Vamos renovar a política do Brasil',
 	},
+	contact: {
+		firstMessage: 'Todo cidadão pode entrar em contato conosco pelo nosso portal: ',
+		siteURL: 'http://renovabr.org/central-de-transparencia/',
+		secondMessage: 'Siga-nos nas redes sociais:' +
+		'\nTwitter: https://twitter.com/renova_br' +
+		'\nInstagram: https://www.instagram.com/renovabr/' +
+		'\nFacebook: https://www.facebook.com/BrasilRenova/',
+	},
 	error: {
 		firstMessage: `Eu não entendi, me desculpa? ${emoji.get('pensive')}`,
 		secondMessage: 'Digite palavras como "sobre" para saber mais sobre o RenovaBR ou "bolsistas" para saber sobre os selecionados, por exemplo.',

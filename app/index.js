@@ -279,6 +279,10 @@ bot.onEvent(async (context) => {
 			await context.sendText(flow.financing.thirdMessage);
 			await attach.sendMenu(context, flow.financing);
 			break;
+		case 'contact':
+			await context.sendText(flow.contact.firstMessage + flow.contact.siteURL);
+			await context.sendText(flow.contact.secondMessage, { quick_replies: menuOptions });
+			break;
 		case 'error':
 			// mailer.sendMail(
 			// 	`${context.session.user.first_name} ${context.session.user.last_name}`,
