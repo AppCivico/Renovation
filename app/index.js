@@ -30,8 +30,8 @@ const menuOptions = [
 	},
 ];
 
-let userDoubt = '';
-let userMail = '';
+// userDoubt -> context.state.userDoubt -> stores user doubt for before sending it
+// userMail -> context.state.userMail -> stores user mail for before sending it
 
 const config = require('./bottender.config.js').messenger;
 
@@ -44,19 +44,19 @@ bot.onEvent(async (context) => {
 	if (!context.event.isDelivery && !context.event.isEcho && !context.event.isRead) {
 		if (context.event.isPostback) {
 			const { payload } = context.event.postback;
-			console.log(payload);
+			// console.log(payload);
 			await context.setState({ dialog: payload });
 		} else if (context.event.isQuickReply) {
-			console.log(context.event.quickReply);
+			// console.log(context.event.quickReply);
 			const { payload } = context.event.quickReply;
 			await context.setState({ dialog: payload });
 		} else if (context.event.isText) {
 			if (context.state.dialog === 'listeningDoubt') {
-				userDoubt = context.event.message.text;
+				await context.setState({ userDoubt: context.event.message.text });
 				await context.setState({ dialog: 'email' });
 			}
 			if (context.state.dialog === 'listeningEmail') {
-				userMail = context.event.message.text;
+				await context.setState({ userMail: context.event.message.text });
 				await context.setState({ dialog: 'send' });
 			}
 			if (context.state.dialog !== 'doubt' && context.state.dialog !== 'email' && context.state.dialog !== 'send') {
@@ -146,6 +146,7 @@ bot.onEvent(async (context) => {
 		case 'join':
 			await context.sendText(flow.join.firstMessage);
 			await context.sendText(flow.join.secondMessage);
+			await context.sendText(flow.join.thirdMessage);
 			await attach.sendCarousel(context, flow.join);
 			await context.sendText(flow.join.menuMsg, {
 				quick_replies: [
@@ -330,14 +331,14 @@ bot.onEvent(async (context) => {
 			await context.setState({ dialog: 'listeningEmail' });
 			break;
 		case 'send':
-			console.log('email', userMail);
-			console.log('doubt', userDoubt);
+			// console.log('email', context.state.userMail);
+			// console.log('doubt', context.state.userDoubt);
 			mailer.sendDoubt(
 				`${context.session.user.first_name} ${context.session.user.last_name}`,
-				userDoubt, userMail // eslint-disable-line comma-dangle
+				context.state.userDoubt, context.state.userMail // eslint-disable-line comma-dangle
 			);
-			userDoubt = '';
-			userMail = '';
+			await context.setState({ userDoubt: '' });
+			await context.setState({ userMail: '' });
 			await context.sendText(flow.email.endMessage);
 			await context.sendText(flow.mainMenu.menuMsg, { quick_replies: menuOptions });
 
