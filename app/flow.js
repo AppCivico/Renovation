@@ -139,7 +139,7 @@ module.exports = {
 		siteTitle: 'Vamos renovar a política do Brasil',
 	},
 	contact: {
-		firstMessage: 'Todo cidadão pode entrar em contato conosco pelo nosso portal: ',
+		firstMessage: 'Todo cidadão pode entrar em contato conosco pelo nosso portal:\n',
 		siteURL: 'http://renovabr.org/central-de-transparencia/',
 		secondMessage: 'Siga-nos nas redes sociais:' +
 		'\nTwitter: https://twitter.com/renova_br' +
