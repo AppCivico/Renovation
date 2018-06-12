@@ -83,6 +83,7 @@ module.exports = {
 	join: {
 		firstMessage: `Aii, estou até emocionada. ${emoji.get('heart_eyes')}`,
 		secondMessage: 'Gente que está a fim de fazer parte é muito bom.',
+		thirdMessage: 'Tem várias formas de fazer parte, olha só:',
 		menuMsg: 'Que tal?',
 		menuOptions: ['Entendi'],
 		menuPostback: ['mainMenu'],
