@@ -284,10 +284,10 @@ bot.onEvent(async (context) => {
 			await context.sendText(flow.contact.secondMessage, { quick_replies: menuOptions });
 			break;
 		case 'error':
-			// mailer.sendMail(
-			// 	`${context.session.user.first_name} ${context.session.user.last_name}`,
-			// 	context.event.message.text // eslint-disable-line comma-dangle
-			// );
+			mailer.sendMail(
+				`${context.session.user.first_name} ${context.session.user.last_name}`,
+				context.event.message.text // eslint-disable-line comma-dangle
+			);
 			await context.typingOff();
 			await context.sendText(flow.error.firstMessage);
 			await context.sendText(flow.error.secondMessage);
