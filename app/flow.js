@@ -83,9 +83,19 @@ module.exports = {
 	join: {
 		firstMessage: `Aii, estou até emocionada. ${emoji.get('heart_eyes')}`,
 		secondMessage: 'Gente que está a fim de fazer parte é muito bom.',
-		menuMsg: 'Tem várias formas de fazer parte, olha só: <ver carousel>',
-		menuOptions: ['Doar', 'Voluntariar', 'Agora não'],
-		menuPostback: ['mainMenu', 'mainMenu', 'mainMenu'],
+		thirdMessage: 'Tem várias formas de fazer parte, olha só:',
+		menuMsg: 'Que tal?',
+		menuOptions: ['Entendi'],
+		menuPostback: ['mainMenu'],
+		// -- attach
+		button: 'Entendi',
+		postback: 'mainMenu',
+		siteTitle: ['Doar', 'Torne-se vonluntário'],
+		siteURL: ['http://renovabr.org/doe', 'http://renovabr.org/participe/'],
+		imageURL: [
+			'https://www.kickante.com.br/sites/default/files/styles/campaign_pitch_image/public/financiamento-coletivo/pitch/vamos_renovar_a_politica_do_brasil-717728.png?itok=4h6djkP6',
+			'http://renovabr.org/wp-content/uploads/2018/01/img-participate.jpg',
+		],
 	},
 	subscription: {
 		firstMessage: 'As inscrições já foram encerradas e não temos previsão para quando será o próximo.' +
@@ -128,11 +138,35 @@ module.exports = {
 		imageURL: 'https://www.kickante.com.br/sites/default/files/styles/campaign_pitch_image/public/financiamento-coletivo/pitch/vamos_renovar_a_politica_do_brasil-717728.png?itok=4h6djkP6',
 		siteTitle: 'Vamos renovar a política do Brasil',
 	},
+	contact: {
+		firstMessage: 'Todo cidadão pode entrar em contato conosco pelo nosso portal:\n',
+		siteURL: 'http://renovabr.org/central-de-transparencia/',
+		secondMessage: 'Siga-nos nas redes sociais:' +
+		'\nTwitter: https://twitter.com/renova_br' +
+		'\nInstagram: https://www.instagram.com/renovabr/' +
+		'\nFacebook: https://www.facebook.com/BrasilRenova/',
+	},
 	error: {
 		firstMessage: `Eu não entendi, me desculpa? ${emoji.get('pensive')}`,
 		secondMessage: 'Digite palavras como "sobre" para saber mais sobre o RenovaBR ou "bolsistas" para saber sobre os selecionados, por exemplo.',
 		thirdMessage: `Eu estou em um ambiente de teste, por isso a linguagem natural pode ser difícil de entender... ${emoji.get('confused')}`,
 		menuMsg: 'Você pode digitar novamente ou escolher as opções do menu',
+		askContact: 'Se quiser, posso te ajudar a entrar em contato com a equipe do RenovaBR para tirar suas dúvidas! Que tal?',
+		menuOptions: ['Vamos lá!', 'Agora não'],
+		menuPostback: ['doubt', 'mainMenu'],
+	},
+	doubt: {
+		firstMessage: `Legal! Agradecemos seu interesse. ${emoji.get('smile')}`,
+		secondMessage: 'Precisarei do seu e-mail e da sua dúvida. Você poderá cancelar com o botão abaixo. \nPor favor, digite sua dúvida:',
+		menuOptions: ['Cancelar'],
+		menuPostback: ['mainMenu'],
+	},
+	email: {
+		firstMessage: `Entendi! ${emoji.get('thumbsup')}`,
+		secondMessage: '\nAgora, por favor, digite seu e-mail:',
+		menuOptions: ['Cancelar'],
+		menuPostback: ['mainMenu'],
+		endMessage: 'Obrigado! Agradecemos seu contato, estaremos respondendo sua dúvida via e-mail.',
 	},
 
 };
