@@ -91,7 +91,7 @@ Layout:
 Link:
     Terminologia para endereço de Internet.
 Cora do RenovaBR:
-    Designa a Plataforma disponível nas lojas virtuais de aplicativos e no endereço eletrônico www.cora.org e seus subdomínios.
+    Designa a Plataforma disponível nas lojas virtuais de aplicativos e no endereço eletrônico www.renovaCora.org e seus subdomínios.
 Usuários:
     Pessoas que acessam ou interagem com as atividades oferecidas pela Cora do RenovaBR.
 
