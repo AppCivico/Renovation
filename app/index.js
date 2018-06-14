@@ -49,7 +49,12 @@ bot.onEvent(async (context) => {
 		} else if (context.event.isQuickReply) {
 			// console.log(context.event.quickReply);
 			const { payload } = context.event.quickReply;
-			await context.setState({ dialog: payload });
+			if (payload === 'cancel') {
+				await context.sendText(flow.doubt.afterMessage);
+				await context.setState({ dialog: 'mainMenu' });
+			} else {
+				await context.setState({ dialog: payload });
+			}
 		} else if (context.event.isText) {
 			if (context.state.dialog === 'listeningDoubt') {
 				await context.setState({ userDoubt: context.event.message.text });
@@ -71,7 +76,6 @@ bot.onEvent(async (context) => {
 				await context.setState({ dialog: response.result.metadata.intentName });
 			}
 		}
-
 
 		switch (context.state.dialog) {
 		case 'greetings':

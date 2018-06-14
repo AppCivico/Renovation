@@ -2,7 +2,7 @@ const nodemailer = require('nodemailer');
 
 const user = process.env.SENDER_EMAIL;
 const pass = process.env.SENDER_PASSWORD;
-const sendTo = ['jordan@eokoe.com'];
+const sendTo = process.env.EMAIL_TO_RECEIVE;
 
 
 const transporter = nodemailer.createTransport({

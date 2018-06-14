@@ -42,7 +42,7 @@ module.exports = {
 		`${emoji.get('facepunch')}`,
 		// -- end
 		extraMessage: 'Legal, né?',
-		endMessage: `Vamos conversar mais! Você pode me perguntar algo digitando uma palavra-chave ou escolher as opções. ${emoji.get('wink')}`,
+		endMessage: `Vamos conversar mais! Você pode me perguntar ou escolher as opções. ${emoji.get('wink')}`,
 		// -- attachment
 		siteURL: 'http://renovabr.org/bolsistas/',
 		imageURL: 'http://renovabr.org/wp-content/uploads/2018/04/brasil-tem-jeito.png',
@@ -60,7 +60,7 @@ module.exports = {
 		fourthMessage: 'A diferença é que no RenovaBR os problemas estão no centro das discussões. Há bolsistas liberais, progressistas, conservadores, socialistas, trabalhistas, enfim, de todos os pensamentos políticos atuais. O foco de todos é encontrar a solução para os principais problemas do país com diálogo e convergência de objetivos.',
 		fifthMessage: 'As lideranças não são rotuladas como de “esquerda” ou de “direita”. O RenovaBR é um meio de defender princípios na política. Por isso, o RenovaBR é um projeto inédito no mundo.',
 		// -- end
-		endMessage: `Vamos conversar mais! Você pode me perguntar algo digitando uma palavra-chave ou escolher as opções. ${emoji.get('wink')}`,
+		endMessage: `Vamos conversar mais! Você pode me perguntar ou escolher as opções. ${emoji.get('wink')}`,
 	},
 	payment: {
 		firstMessage: 'Os integrantes recebem bolsa de estudos. Para que possam se dedicar exclusivamente ao processo de formação, eles recebem uma bolsa mensal entre R$ 5mil e R$ 12mil, calculada com base no rendimento médio nominal mensal, de acordo com a Pesquisa Nacional de Amostra por Domicílio (PNAD), divulgada IBGE.',
@@ -78,7 +78,7 @@ module.exports = {
 		thirdRule: 'RESPONSABILIDADE: Abrir mão e combater os privilégios do cargo. Adotar um modelo de gabinete enxuto e usar a verba parlamentar com consciência.',
 		fourthRule: 'MUDANÇA: Trabalhar por uma reforma política que priorize o interesse público. Há diversos caminhos possíveis. O fundamental é mudar.',
 		// -- end
-		endMessage: `Vamos conversar mais! Você pode me perguntar algo digitando uma palavra-chave ou escolher as opções. ${emoji.get('wink')}`,
+		endMessage: `Vamos conversar mais! Você pode me perguntar ou escolher as opções. ${emoji.get('wink')}`,
 	},
 	join: {
 		firstMessage: `Aii, estou até emocionada. ${emoji.get('heart_eyes')}`,
@@ -101,14 +101,14 @@ module.exports = {
 		firstMessage: 'As inscrições já foram encerradas e não temos previsão para quando será o próximo.' +
 		'Mas acompanhe as nossas redes sociais para ficar por dentro de todas as nossas novidades!',
 		secondMessage: 'Essa pergunta foi fácil! Me pergunte mais!',
-		endMessage: `Vamos conversar mais! Você pode me perguntar algo digitando uma palavra-chave ou escolher as opções. ${emoji.get('wink')}`,
+		endMessage: `Vamos conversar mais! Você pode me perguntar ou escolher as opções. ${emoji.get('wink')}`,
 	},
 	position: {
 		firstMessage: 'RenovaBR de esquerda ou de direita? tchan tchan tchan',
 		secondMessage: 'As lideranças do RenovaBR têm liberdade de ideologia e posicionamento. ' +
 		'Temos lideranças de diversos espectros políticos, dá uma olhada aqui para conhecê-los melhor:',
 		site: '<link do site aqui>',
-		endMessage: `Vamos conversar mais! Você pode me perguntar algo digitando uma palavra-chave ou escolher as opções. ${emoji.get('wink')}`,
+		endMessage: `Vamos conversar mais! Você pode me perguntar ou escolher as opções. ${emoji.get('wink')}`,
 		// -- attachment
 		siteURL: 'http://renovabr.org/bolsistas/',
 		imageURL: 'http://renovabr.org/wp-content/uploads/2018/04/brasil-tem-jeito.png',
@@ -132,7 +132,7 @@ module.exports = {
 		firstMessage: 'O RenovaBR se mantém através das doações de pessoas físicas interessadas em apoiar um programa de renovação política feito com qualidade.',
 		secondMessage: 'Os doadores não têm nenhum contato com as lideranças do RenovaBR.',
 		thirdMessage: 'Todos podem doar por meio do financiamento coletivo no site:',
-		endMessage: `Vamos conversar mais! Você pode me perguntar algo digitando uma palavra-chave ou escolher as opções. ${emoji.get('wink')}`,
+		endMessage: `Vamos conversar mais! Você pode me perguntar ou escolher as opções. ${emoji.get('wink')}`,
 		// -- attachment
 		siteURL: 'https://www.kickante.com.br/campanhas/renovabr-novos-politicos-no-brasil',
 		imageURL: 'https://www.kickante.com.br/sites/default/files/styles/campaign_pitch_image/public/financiamento-coletivo/pitch/vamos_renovar_a_politica_do_brasil-717728.png?itok=4h6djkP6',
@@ -153,19 +153,20 @@ module.exports = {
 		menuMsg: 'Você pode digitar novamente ou escolher as opções do menu',
 		askContact: 'Se quiser, posso te ajudar a entrar em contato com a equipe do RenovaBR para tirar suas dúvidas! Que tal?',
 		menuOptions: ['Vamos lá!', 'Agora não'],
-		menuPostback: ['doubt', 'mainMenu'],
+		menuPostback: ['doubt', 'cancel'],
 	},
 	doubt: {
 		firstMessage: `Legal! Agradecemos seu interesse. ${emoji.get('smile')}`,
 		secondMessage: 'Precisarei do seu e-mail e da sua dúvida. Você poderá cancelar com o botão abaixo. \nPor favor, digite sua dúvida:',
 		menuOptions: ['Cancelar'],
-		menuPostback: ['mainMenu'],
+		menuPostback: ['cancel'],
+		afterMessage: `Tudo bem ${emoji.get('wink')}`,
 	},
 	email: {
 		firstMessage: `Entendi! ${emoji.get('thumbsup')}`,
 		secondMessage: '\nAgora, por favor, digite seu e-mail:',
 		menuOptions: ['Cancelar'],
-		menuPostback: ['mainMenu'],
+		menuPostback: ['cancel'],
 		endMessage: 'Obrigado! Agradecemos seu contato, estaremos respondendo sua dúvida via e-mail.',
 	},
 
