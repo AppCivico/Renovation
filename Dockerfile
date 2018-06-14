@@ -31,6 +31,5 @@ USER root
 COPY services/ /etc/service/
 RUN chmod +x /etc/service/*/run
 
-RUN echo 'asds'
 ENTRYPOINT ["runsvdir"]
 CMD ["/etc/service/"]

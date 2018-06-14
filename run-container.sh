@@ -2,7 +2,7 @@
 
 # arquivo de exemplo para iniciar o container
 #export SOURCE_DIR='/home/appcivico/projects/De-Olho-Nas-Metas-2017'
-export SOURCE_DIR='/home/renova/'
+export SOURCE_DIR='/home/jordan-eokoe/Renovation'
 export DATA_DIR='/tmp/renova/data/'
 
 # confira o seu ip usando ifconfig docker0|grep 'inet addr:'
@@ -16,3 +16,5 @@ docker run --name renova \
  -p $DOCKER_LAN_IP:$LISTEN_PORT:2049 \
  --cpu-shares=512 \
  --memory 1800m -dit --restart unless-stopped appcivico/renova
+
+ 
