@@ -10,11 +10,19 @@ module.exports = {
 		secondMessage: 'Estou aqui para responder as perguntas frequentes.',
 		thirdMessage: 'Você quer saber mais sobre o RenovaBR ou já quer me perguntar algo?\nPra perguntar basta digitar e me mandar.',
 	},
+	submenu: {
+		menuMsg: `Você quer saber mais sobre o RenovaBR ou deseja me perguntar algo? ${emoji.get('smile')}`,
+		menuOptions: ['Saber mais', 'Perguntar', 'Ver Opções'],
+		menuPostback: ['about', 'ask', 'mainMenu'],
+	},
+	ask: {
+		firstMessage: `A qualquer instante você pode digitar a sua dúvida e me mandar. ${emoji.get('blush')}`,
+		secondMessage: 'O que gostaria de saber?',
+	},
 	mainMenu: {
-		menuMsg: 'Escolha uma opção para saber mais ou digite sua pergunta:',
+		menuMsg: `Escolha uma opção para saber mais ou digite sua pergunta: ${emoji.get('smile')}`,
 		menuOptions: ['Sobre RenovaBR', 'Bolsistas', 'Fazer Parte'],
 		menuPostback: ['about', 'scholarship', 'join'],
-
 	},
 	about: {
 		firstMessage: 'O RenovaBR surgiu em outubro de 2017 da necessidade da sociedade de sair do discurso para ações concretas para melhorar a política brasileira.' +
@@ -51,7 +59,7 @@ module.exports = {
 	course: {
 		firstMessage: 'O curso do RenovaBR mescla aulas presenciais e à distância. A carga horária total é de 240 horas. Para seguir no projeto até julho, prazo final do curso, os alunos terão de cumprir carga horária mínima de 200 horas e ter 80% de aprovação das avaliações feitas ao longo do semestre, além de seguirem alinhados com o propósito do RenovaBR de trabalhar pela ética, democracia e vontade de servir à sociedade.',
 		secondMessage: 'Os integrantes do RenovaBR têm disciplinas de liderança, funcionamento do Legislativo, Teoria Geral do Estado, novas experiências políticas, papel do Estado, eficiência do Governo, desafios do Brasil, Direito Eleitoral, cenário eleitoral, marketing político e media training. Além disso, cada liderança tem o acompanhamento de um coach da Sociedade Brasileira de Coaching. O profissional orienta o bolsista a encontrar suas maiores competências para produzir as mudanças necessárias da renovação política.',
-		excuseMe: `Foi mal pelo textão, mas acho que respondi né ${emoji.get('smiley')}`,
+		excuseMe: `Foi mal pelo textão, mas acho que respondi, né? ${emoji.get('smiley')}`,
 		menuMsg: 'Que tal?',
 		menuOptions: ['Conta mais', 'Avançar', 'Entendi'],
 		menuPostback: ['courseMore', 'courseEnd', 'mainMenu'],
@@ -66,7 +74,7 @@ module.exports = {
 		firstMessage: 'Os integrantes recebem bolsa de estudos. Para que possam se dedicar exclusivamente ao processo de formação, eles recebem uma bolsa mensal entre R$ 5mil e R$ 12mil, calculada com base no rendimento médio nominal mensal, de acordo com a Pesquisa Nacional de Amostra por Domicílio (PNAD), divulgada IBGE.',
 		secondMessage: `E uma curiosidade: Alguns abriram mão da bolsa e mantêm suas despesas por conta própria. ${emoji.get('scream')}`,
 		thirdMessage: `Também é importante frisar que não haverá qualquer tipo de investimento, pelo RenovaBR, em futuras campanhas políticas. ${emoji.get('wink')}`,
-		menuMsg: `Tem muita coisa para contar ${emoji.get('blush')}`,
+		menuMsg: `Tem muita coisa para contar! ${emoji.get('blush')}`,
 		menuOptions: ['Conta mais', 'Avançar', 'Quais regras?'],
 		menuPostback: ['paymentMore', 'paymentEnd', 'paymentRules'],
 		// -- more
@@ -78,7 +86,7 @@ module.exports = {
 		thirdRule: 'RESPONSABILIDADE: Abrir mão e combater os privilégios do cargo. Adotar um modelo de gabinete enxuto e usar a verba parlamentar com consciência.',
 		fourthRule: 'MUDANÇA: Trabalhar por uma reforma política que priorize o interesse público. Há diversos caminhos possíveis. O fundamental é mudar.',
 		// -- end
-		endMessage: `Vamos conversar mais! Você pode me perguntar ou escolher as opções. ${emoji.get('wink')}`,
+		endMessage: `O que mais deseja saber? Pode me perguntar a qualquer hora ${emoji.get('relieved')}`,
 	},
 	join: {
 		firstMessage: `Aii, estou até emocionada. ${emoji.get('heart_eyes')}`,
@@ -123,7 +131,7 @@ module.exports = {
 		// -- more
 		fourthMessage: 'Queria te contar sobre a banca seletora.',
 		fifthMessage: `Depois dos testes da fase online, os pré-selecionados passaram por entrevistas individuais com membros do nosso time. Após essa fase, participaram da banca, conduzida por especialistas de diversas áreas e repertórios. ${emoji.get('wink')}`,
-		excuseMe: `Foi mal pelo textão, mas acho que respondi né ${emoji.get('smiley')}`,
+		excuseMe: `Foi mal pelo textão, mas acho que respondi, né? ${emoji.get('smiley')}`,
 		// -- end
 		menuMsg: `É, eu sei, eu falo bastante ${emoji.get('speak_no_evil')}`,
 		endMessage: `Mas eu quero falar mais! ${emoji.get('joy')} Você pode me perguntar algo digitando uma palavra-chave ou escolher as opções ${emoji.get('wink')}`,
@@ -157,7 +165,7 @@ module.exports = {
 	},
 	doubt: {
 		firstMessage: `Legal! Agradecemos seu interesse. ${emoji.get('smile')}`,
-		secondMessage: 'Precisarei do seu e-mail e da sua dúvida. Você poderá cancelar com o botão abaixo. \nPor favor, digite sua dúvida:',
+		secondMessage: 'Precisarei da sua dúvida e do seu e-mail. Você poderá cancelar com o botão abaixo. \nPor favor, digite sua dúvida:',
 		menuOptions: ['Cancelar'],
 		menuPostback: ['cancel'],
 		afterMessage: `Tudo bem ${emoji.get('wink')}`,

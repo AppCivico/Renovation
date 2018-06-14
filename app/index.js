@@ -82,7 +82,30 @@ bot.onEvent(async (context) => {
 			await context.sendImage(flow.greetings.greetImage);
 			await context.sendText(flow.greetings.firstMessage);
 			await context.sendText(flow.greetings.secondMessage);
-			await context.sendText(flow.greetings.thirdMessage, { quick_replies: menuOptions });
+			await context.sendText(flow.submenu.menuMsg, {
+				quick_replies: [
+					{
+						content_type: 'text',
+						title: flow.submenu.menuOptions[0],
+						payload: flow.submenu.menuPostback[0],
+					},
+					{
+						content_type: 'text',
+						title: flow.submenu.menuOptions[1],
+						payload: flow.submenu.menuPostback[1],
+					},
+					{
+						content_type: 'text',
+						title: flow.submenu.menuOptions[2],
+						payload: flow.submenu.menuPostback[2],
+					},
+
+				],
+			});
+			break;
+		case 'ask':
+			await context.sendText(flow.ask.firstMessage);
+			await context.sendText(flow.ask.secondMessage);
 			break;
 		case 'mainMenu':
 			await context.sendText(flow.mainMenu.menuMsg, { quick_replies: menuOptions });
