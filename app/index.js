@@ -66,7 +66,8 @@ bot.onEvent(async (context) => {
 			}
 			if (context.state.dialog !== 'doubt' && context.state.dialog !== 'email' && context.state.dialog !== 'send') {
 				await context.typingOn();
-				const response = await app.textRequest(context.event.message.text, {
+				await context.setState({ userText: context.event.message.text });
+				const response = await app.textRequest(context.state.userText, {
 					sessionId: context.session.user.id,
 				});
 				// await context.sendText(` Você digitou ${context.event.message.text}` +
@@ -311,10 +312,12 @@ bot.onEvent(async (context) => {
 			await context.sendText(flow.contact.secondMessage, { quick_replies: menuOptions });
 			break;
 		case 'error':
-			mailer.sendMail(
-				`${context.session.user.first_name} ${context.session.user.last_name}`,
-				context.event.message.text // eslint-disable-line comma-dangle
-			);
+			if (context.state.userText) {
+				mailer.sendMail(
+					`${context.session.user.first_name} ${context.session.user.last_name}`,
+					context.state.userText // eslint-disable-line comma-dangle
+				);
+			}
 			await context.typingOff();
 			await context.sendText(flow.error.firstMessage);
 			await context.sendText(flow.error.secondMessage);

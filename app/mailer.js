@@ -13,6 +13,7 @@ const transporter = nodemailer.createTransport({
 	},
 });
 
+
 function sendMail(userName = 'erro', userText = 'entre em contato') {
 	const mailOptions = {
 		from: user,
