@@ -2,7 +2,7 @@
 
 # arquivo de exemplo para iniciar o container
 #export SOURCE_DIR='/home/appcivico/projects/De-Olho-Nas-Metas-2017'
-export SOURCE_DIR='/home/jordan-eokoe/Projetos/Renovation'
+export SOURCE_DIR='/home/lucas-eokoe/projects/Renovation'
 export DATA_DIR='/tmp/renova/data/'
 
 # confira o seu ip usando ifconfig docker0|grep 'inet addr:'
