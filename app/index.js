@@ -3,6 +3,7 @@ require('dotenv').config();
 const { MessengerBot } = require('bottender');
 const { createServer } = require('bottender/restify');
 
+const moment = require('moment');
 const apiai = require('apiai-promise');
 
 // const postbacks = require('./postback');
@@ -10,8 +11,10 @@ const mailer = require('./mailer');
 const flow = require('./flow');
 const attach = require('./attach');
 
-const app = apiai(process.env.DIALOGFLOW_TOKEN);
+console.log(`Crontab MailTimer is running? => ${mailer.MailTimer.running}`);
 
+
+const app = apiai(process.env.DIALOGFLOW_TOKEN);
 const menuOptions = [
 	{
 		content_type: 'text',
@@ -313,10 +316,15 @@ bot.onEvent(async (context) => {
 			break;
 		case 'error':
 			if (context.state.userText) {
-				mailer.sendMail(
-					`${context.session.user.first_name} ${context.session.user.last_name}`,
-					context.state.userText // eslint-disable-line comma-dangle
-				);
+				mailer.addError({
+					name: `${context.session.user.first_name} ${context.session.user.last_name}`,
+					doubt: context.state.userText,
+					date: moment().format('LTS'),
+				});
+				// mailer.sendMail(
+				// 	`${context.session.user.first_name} ${context.session.user.last_name}`,
+				// 	context.state.userText // eslint-disable-line comma-dangle
+				// );
 			}
 			await context.typingOff();
 			await context.sendText(flow.error.firstMessage);
@@ -382,6 +390,15 @@ bot.onEvent(async (context) => {
 });
 
 const server = createServer(bot);
+
+// function respond(req, res, next) {
+// 	flow = require('./flow');
+// 	next();
+// }
+
+// // var server = restify.createServer();
+// server.get('/reload', respond);
+// server.head('/reload', respond);
 
 server.listen(process.env.API_PORT, () => {
 	console.log(`Server is running on ${process.env.API_PORT} port...`);
