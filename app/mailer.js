@@ -93,7 +93,7 @@ const MailTimer = new Cron.CronJob(
 	'00 00 9-23/3 * * 1-6', () => {
 		let text = 'Não recebemos nenhuma dúvida nas últimas horas.';
 
-		if (mailError.length > 0) {
+		if (mailError.length > 0 && typeof mailError !== 'undefined') {
 			mailError.sort((a, b) => {
 				const nameA = a.name.toUpperCase(); // ignore upper and lowercase
 				const nameB = b.name.toUpperCase(); // ignore upper and lowercase
@@ -128,7 +128,7 @@ const MailTimer = new Cron.CronJob(
 			// 		console.log(`Email sent: ${info.response}`);
 			// 	}
 			// });
-
+			console.log(text);
 			cleanMail();
 		}
 	}, (() => {
