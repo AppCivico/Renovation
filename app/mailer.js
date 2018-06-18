@@ -79,18 +79,14 @@ function senderror(userName = 'erro', userText = 'entre em contato', userMail = 
 
 module.exports.senderror = senderror;
 
-function addError(obj) {
-	mailError.push(obj);
-}
+function addError(obj) { mailError.push(obj); }
 
 module.exports.addError = addError;
 
-function cleanMail() {
-	mailError.length = 0;
-}
+function cleanMail() { mailError.length = 0; }
 
 const MailTimer = new Cron.CronJob(
-	'00 00 9-23/3 * * 1-6', () => {
+	'00 00 10-22/2 * * 1-6', () => {
 		let text = 'Não recebemos nenhuma dúvida nas últimas horas.';
 
 		if (mailError.length > 0 && typeof mailError !== 'undefined') {
