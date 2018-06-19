@@ -69,16 +69,39 @@ bot.onEvent(async (context) => {
 			}
 			if (context.state.dialog !== 'doubt' && context.state.dialog !== 'email' && context.state.dialog !== 'send') {
 				await context.typingOn();
-				await context.setState({ userText: context.event.message.text });
-				const response = await app.textRequest(context.state.userText, {
-					sessionId: context.session.user.id,
-				});
-				// await context.sendText(` Você digitou ${context.event.message.text}` +
-				// `!\nIntent: ${response.result.metadata.intentName}`);
-				// console.log(response.result.metadata.intentName);
+				const payload = await context.event.message.text.replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, '');
+				console.log(payload);
+				if (payload) {
+					await context.setState({ userText: context.event.message.text });
+					const response = await app.textRequest(payload, {
+						sessionId: context.session.user.id,
+					});
+					// await context.sendText(` Você digitou ${context.event.message.text}` +
+					// `!\nIntent: ${response.result.metadata.intentName}`);
+					// console.log(response.result.metadata.intentName);
 
-				await context.setState({ dialog: response.result.metadata.intentName });
+					await context.setState({ dialog: response.result.metadata.intentName });
+				} else {
+					await context.sendImage(flow.submenu.likeImage);
+					await context.setState({ dialog: 'mainMenu' });
+				}
 			}
+		} else if (context.event.hasAttachment || context.event.isLikeSticker ||
+			context.event.isFile || context.event.isVideo || context.event.isAudio ||
+			context.event.isImage || context.event.isFallback) {
+			// const attachment = context.event.message.attachments[0];
+			// const stickerNum = attachment.payload.sticker_id;
+			// if (stickerNum !== undefined) {
+			// 	if (stickerNum === 369239343222814) {
+			// 		console.log('Got a big thumbs up image');
+			// 	} else if (stickerNum === 369239263222822) {
+			// 		console.log('Got a regular thumbs up image');
+			// 	} else {
+			// 		console.log('Got unidentified sticker id: %s', stickerNum);
+			// 	}
+			// }
+			await context.sendImage(flow.submenu.likeImage);
+			await context.setState({ dialog: 'mainMenu' });
 		}
 
 		switch (context.state.dialog) {

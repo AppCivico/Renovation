@@ -14,6 +14,7 @@ module.exports = {
 		menuMsg: `Você quer saber mais sobre o RenovaBR ou deseja me perguntar algo? ${emoji.get('smile')}`,
 		menuOptions: ['Saber mais', 'Perguntar', 'Ver Opções'],
 		menuPostback: ['about', 'ask', 'mainMenu'],
+		likeImage: 'https://gallery.mailchimp.com/926cb477483bcd8122304bc56/images/a5e8ffa7-c0c6-412e-82ba-b9e127ca2f91.png',
 	},
 	ask: {
 		firstMessage: `A qualquer instante você pode digitar a sua dúvida e me mandar. ${emoji.get('blush')}`,
