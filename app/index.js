@@ -14,6 +14,8 @@ const attach = require('./attach');
 
 console.log(`Crontab MailTimer is running? => ${mailer.MailTimer.running}`);
 
+const timeLimit = 1000 * 60 * 15; // 15 minutes
+
 
 const app = apiai(process.env.DIALOGFLOW_TOKEN);
 const menuOptions = [
@@ -48,7 +50,16 @@ const bot = new MessengerBot({
 
 bot.onEvent(async (context) => {
 	if (!context.event.isDelivery && !context.event.isEcho && !context.event.isRead) {
-		if (context.event.isPostback) {
+		// check if enough time has passed so we can send a welcome back message
+		// now - lastActivity >= timeLimit
+		if ((context.event.rawEvent.timestamp - context.session.lastActivity) >= timeLimit) {
+			if (context.session.user.first_name) { // check if first_name to avoid an 'undefined' value
+				await context.sendText(`Olá, ${context.session.user.first_name}! ${flow.greetings.comeBack}`);
+			} else {
+				await context.sendText(`Olá! ${flow.greetings.comeBack}`);
+			}
+			await context.setState({ dialog: 'mainMenu' });
+		} else if (context.event.isPostback) {
 			const { payload } = context.event.postback;
 			// console.log(payload);
 			await context.setState({ dialog: payload });
@@ -74,7 +85,6 @@ bot.onEvent(async (context) => {
 				await context.typingOn();
 				// removing emojis from message
 				const payload = await context.event.message.text.replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, '');
-				console.log(payload);
 				if (payload) { // check if string isn't empty after removing emojis
 					await context.setState({ userText: context.event.message.text });
 					const response = await app.textRequest(payload, {

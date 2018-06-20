@@ -9,6 +9,7 @@ module.exports = {
 		firstMessage: 'Olá, sou a Cora. A coruja robô assistente do RenovaBR.',
 		secondMessage: 'Estou aqui para responder as perguntas frequentes.',
 		thirdMessage: 'Você quer saber mais sobre o RenovaBR ou já quer me perguntar algo?\nPra perguntar basta digitar e me mandar.',
+		comeBack: `Que bom te ver novamente ${emoji.get('heart_eyes')}`,
 	},
 	submenu: {
 		menuMsg: `Você quer saber mais sobre o RenovaBR ou deseja me perguntar algo? ${emoji.get('smile')}`,
