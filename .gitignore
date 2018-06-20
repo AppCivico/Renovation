@@ -63,3 +63,5 @@ typings/
 .env
 
 run-container.sh
+
+.sessions

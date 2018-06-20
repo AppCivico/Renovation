@@ -2,6 +2,7 @@ require('dotenv').config();
 
 const { MessengerBot } = require('bottender');
 const { createServer } = require('bottender/restify');
+const { FileSessionStore } = require('bottender');
 
 const moment = require('moment');
 const apiai = require('apiai-promise');
@@ -41,6 +42,8 @@ const config = require('./bottender.config.js').messenger;
 const bot = new MessengerBot({
 	accessToken: config.accessToken,
 	appSecret: config.appSecret,
+	verifyToken: config.verifyToken,
+	sessionStore: new FileSessionStore(),
 });
 
 bot.onEvent(async (context) => {
@@ -69,9 +72,10 @@ bot.onEvent(async (context) => {
 			}
 			if (context.state.dialog !== 'doubt' && context.state.dialog !== 'email' && context.state.dialog !== 'send') {
 				await context.typingOn();
+				// removing emojis from message
 				const payload = await context.event.message.text.replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, '');
 				console.log(payload);
-				if (payload) {
+				if (payload) { // check if string isn't empty after removing emojis
 					await context.setState({ userText: context.event.message.text });
 					const response = await app.textRequest(payload, {
 						sessionId: context.session.user.id,
@@ -126,7 +130,6 @@ bot.onEvent(async (context) => {
 						title: flow.submenu.menuOptions[2],
 						payload: flow.submenu.menuPostback[2],
 					},
-
 				],
 			});
 			break;
@@ -183,7 +186,6 @@ bot.onEvent(async (context) => {
 						title: flow.scholarship.menuOptions[1],
 						payload: flow.scholarship.menuPostback[1],
 					},
-
 				],
 			});
 			break;
@@ -228,7 +230,6 @@ bot.onEvent(async (context) => {
 						title: flow.course.menuOptions[1],
 						payload: flow.course.menuPostback[1],
 					},
-
 				],
 			});
 			break;
@@ -267,7 +268,6 @@ bot.onEvent(async (context) => {
 						title: flow.payment.menuOptions[1],
 						payload: flow.payment.menuPostback[1],
 					},
-
 				],
 			});
 			break;
@@ -285,7 +285,6 @@ bot.onEvent(async (context) => {
 						title: flow.payment.menuOptions[1],
 						payload: flow.payment.menuPostback[1],
 					},
-
 				],
 			});
 			break;
@@ -314,7 +313,6 @@ bot.onEvent(async (context) => {
 						title: flow.interview.menuOptions[1],
 						payload: flow.interview.menuPostback[1],
 					},
-
 				],
 			});
 			break;
@@ -406,7 +404,6 @@ bot.onEvent(async (context) => {
 			await context.setState({ userMail: '' });
 			await context.sendText(flow.email.endMessage);
 			await context.sendText(flow.mainMenu.menuMsg, { quick_replies: menuOptions });
-
 			break;
 		}
 	}
