@@ -2,6 +2,7 @@ require('dotenv').config();
 
 const { MessengerBot } = require('bottender');
 const { createServer } = require('bottender/restify');
+const { FileSessionStore } = require('bottender');
 
 const moment = require('moment');
 const apiai = require('apiai-promise');
@@ -12,6 +13,8 @@ const flow = require('./flow');
 const attach = require('./attach');
 
 console.log(`Crontab MailTimer is running? => ${mailer.MailTimer.running}`);
+
+const timeLimit = 1000 * 60 * 15; // 15 minutes
 
 
 const app = apiai(process.env.DIALOGFLOW_TOKEN);
@@ -41,11 +44,22 @@ const config = require('./bottender.config.js').messenger;
 const bot = new MessengerBot({
 	accessToken: config.accessToken,
 	appSecret: config.appSecret,
+	verifyToken: config.verifyToken,
+	sessionStore: new FileSessionStore(),
 });
 
 bot.onEvent(async (context) => {
 	if (!context.event.isDelivery && !context.event.isEcho && !context.event.isRead) {
-		if (context.event.isPostback) {
+		// check if enough time has passed so we can send a welcome back message
+		// now - lastActivity >= timeLimit
+		if ((context.event.rawEvent.timestamp - context.session.lastActivity) >= timeLimit) {
+			if (context.session.user.first_name) { // check if first_name to avoid an 'undefined' value
+				await context.sendText(`Olá, ${context.session.user.first_name}! ${flow.greetings.comeBack}`);
+			} else {
+				await context.sendText(`Olá! ${flow.greetings.comeBack}`);
+			}
+			await context.setState({ dialog: 'mainMenu' });
+		} else if (context.event.isPostback) {
 			const { payload } = context.event.postback;
 			// console.log(payload);
 			await context.setState({ dialog: payload });
@@ -69,16 +83,39 @@ bot.onEvent(async (context) => {
 			}
 			if (context.state.dialog !== 'doubt' && context.state.dialog !== 'email' && context.state.dialog !== 'send') {
 				await context.typingOn();
-				await context.setState({ userText: context.event.message.text });
-				const response = await app.textRequest(context.state.userText, {
-					sessionId: context.session.user.id,
-				});
-				// await context.sendText(` Você digitou ${context.event.message.text}` +
-				// `!\nIntent: ${response.result.metadata.intentName}`);
-				// console.log(response.result.metadata.intentName);
+				// removing emojis from message
+				const payload = await context.event.message.text.replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, '');
+				if (payload) { // check if string isn't empty after removing emojis
+					await context.setState({ userText: context.event.message.text });
+					const response = await app.textRequest(payload, {
+						sessionId: context.session.user.id,
+					});
+					// await context.sendText(` Você digitou ${context.event.message.text}` +
+					// `!\nIntent: ${response.result.metadata.intentName}`);
+					// console.log(response.result.metadata.intentName);
 
-				await context.setState({ dialog: response.result.metadata.intentName });
+					await context.setState({ dialog: response.result.metadata.intentName });
+				} else {
+					await context.sendImage(flow.submenu.likeImage);
+					await context.setState({ dialog: 'mainMenu' });
+				}
 			}
+		} else if (context.event.hasAttachment || context.event.isLikeSticker ||
+			context.event.isFile || context.event.isVideo || context.event.isAudio ||
+			context.event.isImage || context.event.isFallback) {
+			// const attachment = context.event.message.attachments[0];
+			// const stickerNum = attachment.payload.sticker_id;
+			// if (stickerNum !== undefined) {
+			// 	if (stickerNum === 369239343222814) {
+			// 		console.log('Got a big thumbs up image');
+			// 	} else if (stickerNum === 369239263222822) {
+			// 		console.log('Got a regular thumbs up image');
+			// 	} else {
+			// 		console.log('Got unidentified sticker id: %s', stickerNum);
+			// 	}
+			// }
+			await context.sendImage(flow.submenu.likeImage);
+			await context.setState({ dialog: 'mainMenu' });
 		}
 
 		switch (context.state.dialog) {
@@ -103,7 +140,6 @@ bot.onEvent(async (context) => {
 						title: flow.submenu.menuOptions[2],
 						payload: flow.submenu.menuPostback[2],
 					},
-
 				],
 			});
 			break;
@@ -160,7 +196,6 @@ bot.onEvent(async (context) => {
 						title: flow.scholarship.menuOptions[1],
 						payload: flow.scholarship.menuPostback[1],
 					},
-
 				],
 			});
 			break;
@@ -205,7 +240,6 @@ bot.onEvent(async (context) => {
 						title: flow.course.menuOptions[1],
 						payload: flow.course.menuPostback[1],
 					},
-
 				],
 			});
 			break;
@@ -244,7 +278,6 @@ bot.onEvent(async (context) => {
 						title: flow.payment.menuOptions[1],
 						payload: flow.payment.menuPostback[1],
 					},
-
 				],
 			});
 			break;
@@ -262,7 +295,6 @@ bot.onEvent(async (context) => {
 						title: flow.payment.menuOptions[1],
 						payload: flow.payment.menuPostback[1],
 					},
-
 				],
 			});
 			break;
@@ -291,7 +323,6 @@ bot.onEvent(async (context) => {
 						title: flow.interview.menuOptions[1],
 						payload: flow.interview.menuPostback[1],
 					},
-
 				],
 			});
 			break;
@@ -383,7 +414,6 @@ bot.onEvent(async (context) => {
 			await context.setState({ userMail: '' });
 			await context.sendText(flow.email.endMessage);
 			await context.sendText(flow.mainMenu.menuMsg, { quick_replies: menuOptions });
-
 			break;
 		}
 	}
