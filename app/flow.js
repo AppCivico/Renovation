@@ -5,7 +5,7 @@ const emoji = require('node-emoji');
 module.exports = {
 	greetings: {
 		welcome: 'Olá, sou a Cora. A coruja robô assistente do RenovaBR. Clique em \'Começar\' para falar comigo!',
-		greetImage: 'https://gallery.mailchimp.com/926cb477483bcd8122304bc56/images/2f06cfe6-fb77-43ac-bfb7-ec3378c249b9.png',
+		greetImage: 'https://gallery.mailchimp.com/926cb477483bcd8122304bc56/images/4420da53-ea8f-4f7f-b3eb-6eb982603e7a.png',
 		firstMessage: 'Olá, sou a Cora. A coruja robô assistente do RenovaBR.',
 		secondMessage: 'Estou aqui para responder as perguntas frequentes.',
 		thirdMessage: 'Você quer saber mais sobre o RenovaBR ou já quer me perguntar algo?\nPra perguntar basta digitar e me mandar.',
