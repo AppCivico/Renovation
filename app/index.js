@@ -14,7 +14,7 @@ const attach = require('./attach');
 
 console.log(`Crontab MailTimer is running? => ${mailer.MailTimer.running}`);
 
-const timeLimit = 1000 * 60 * 15; // 15 minutes
+const timeLimit = 1000 * 60 * 120; // 120 minutes
 
 
 const app = apiai(process.env.DIALOGFLOW_TOKEN);
@@ -120,7 +120,7 @@ bot.onEvent(async (context) => {
 
 		switch (context.state.dialog) {
 		case 'greetings':
-			await context.sendImage(flow.greetings.greetImage);
+			// await context.sendImage(flow.greetings.greetImage);
 			await context.sendText(flow.greetings.firstMessage);
 			await context.sendText(flow.greetings.secondMessage);
 			await context.sendText(flow.submenu.menuMsg, {
