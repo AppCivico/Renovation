@@ -120,7 +120,7 @@ bot.onEvent(async (context) => {
 
 		switch (context.state.dialog) {
 		case 'greetings':
-			await context.sendImage(flow.greetings.greetImage);
+			// await context.sendImage(flow.greetings.greetImage);
 			await context.sendText(flow.greetings.firstMessage);
 			await context.sendText(flow.greetings.secondMessage);
 			await context.sendText(flow.submenu.menuMsg, {
