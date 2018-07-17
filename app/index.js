@@ -64,7 +64,7 @@ bot.onEvent(async (context) => {
 			// console.log(payload);
 			await context.setState({ dialog: payload });
 		} else if (context.event.isQuickReply) {
-			// console.log(context.event.quickReply);
+			console.log(context.event.quickReply);
 			const { payload } = context.event.quickReply;
 			if (payload === 'cancel') {
 				await context.sendText(flow.doubt.afterMessage);
@@ -86,15 +86,19 @@ bot.onEvent(async (context) => {
 				// removing emojis from message
 				const payload = await context.event.message.text.replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, '');
 				if (payload) { // check if string isn't empty after removing emojis
-					await context.setState({ userText: context.event.message.text });
-					const response = await app.textRequest(payload, {
-						sessionId: context.session.user.id,
-					});
-					// await context.sendText(` Você digitou ${context.event.message.text}` +
-					// `!\nIntent: ${response.result.metadata.intentName}`);
-					// console.log(response.result.metadata.intentName);
+					if (context.event.message.text === process.env.RESTART) {
+						await context.setState({ dialog: 'greetings' });
+					} else {
+						await context.setState({ userText: context.event.message.text });
+						const response = await app.textRequest(payload, {
+							sessionId: context.session.user.id,
+						});
+						// await context.sendText(` Você digitou ${context.event.message.text}` +
+						// `!\nIntent: ${response.result.metadata.intentName}`);
+						// console.log(response.result.metadata.intentName);
 
-					await context.setState({ dialog: response.result.metadata.intentName });
+						await context.setState({ dialog: response.result.metadata.intentName });
+					}
 				} else {
 					await context.sendImage(flow.submenu.likeImage);
 					await context.setState({ dialog: 'mainMenu' });
@@ -139,6 +143,9 @@ bot.onEvent(async (context) => {
 						content_type: 'text',
 						title: flow.submenu.menuOptions[2],
 						payload: flow.submenu.menuPostback[2],
+					},
+					{
+						content_type: 'user_phone_number',
 					},
 				],
 			});
