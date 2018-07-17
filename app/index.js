@@ -14,7 +14,7 @@ const attach = require('./attach');
 
 console.log(`Crontab MailTimer is running? => ${mailer.MailTimer.running}`);
 
-const timeLimit = 1000 * 60 * 15; // 15 minutes
+const timeLimit = 1000 * 60 * 120; // 120 minutes
 
 
 const app = apiai(process.env.DIALOGFLOW_TOKEN);
