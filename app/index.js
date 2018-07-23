@@ -16,7 +16,6 @@ console.log(`Crontab MailTimer is running? => ${mailer.MailTimer.running}`);
 
 const timeLimit = 1000 * 60 * 120; // 120 minutes
 
-
 const app = apiai(process.env.DIALOGFLOW_TOKEN);
 const menuOptions = [
 	{
@@ -61,10 +60,8 @@ bot.onEvent(async (context) => {
 			await context.setState({ dialog: 'mainMenu' });
 		} else if (context.event.isPostback) {
 			const { payload } = context.event.postback;
-			// console.log(payload);
 			await context.setState({ dialog: payload });
 		} else if (context.event.isQuickReply) {
-			console.log(context.event.quickReply);
 			const { payload } = context.event.quickReply;
 			if (payload === 'cancel') {
 				await context.sendText(flow.doubt.afterMessage);
@@ -220,6 +217,7 @@ bot.onEvent(async (context) => {
 			await context.sendText(flow.join.firstMessage);
 			await context.sendText(flow.join.secondMessage);
 			await context.sendText(flow.join.thirdMessage);
+			await context.sendText(flow.join.fourthMessage);
 			await attach.sendCarousel(context, flow.join);
 			await context.sendText(flow.join.menuMsg, {
 				quick_replies: [
@@ -267,6 +265,7 @@ bot.onEvent(async (context) => {
 		case 'position':
 			await context.sendText(flow.position.firstMessage);
 			await context.sendText(flow.position.secondMessage);
+			await context.sendText(flow.position.site);
 			await attach.sendMenu(context, flow.position);
 			break;
 		case 'payment':
