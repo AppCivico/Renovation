@@ -412,7 +412,7 @@ bot.onEvent(async (context) => {
 		case 'send':
 			// console.log('email', context.state.userMail);
 			// console.log('doubt', context.state.userDoubt);
-			mailer.addError(
+			mailer.sendError(
 				`${context.session.user.first_name} ${context.session.user.last_name}`,
 				context.state.userDoubt, context.state.userMail // eslint-disable-line comma-dangle
 			);
@@ -420,6 +420,7 @@ bot.onEvent(async (context) => {
 			await context.setState({ userMail: '' });
 			await context.sendText(flow.email.endMessage);
 			await context.sendText(flow.mainMenu.menuMsg, { quick_replies: menuOptions });
+			await context.setState({ dialog: 'mainMenu' });
 			break;
 		}
 	}
