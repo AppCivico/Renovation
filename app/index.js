@@ -412,7 +412,7 @@ bot.onEvent(async (context) => {
 		case 'send':
 			// console.log('email', context.state.userMail);
 			// console.log('doubt', context.state.userDoubt);
-			mailer.sendDoubt(
+			mailer.addError(
 				`${context.session.user.first_name} ${context.session.user.last_name}`,
 				context.state.userDoubt, context.state.userMail // eslint-disable-line comma-dangle
 			);
