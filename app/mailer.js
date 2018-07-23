@@ -86,7 +86,7 @@ module.exports.addError = addError;
 function cleanMail() { mailError.length = 0; }
 
 const MailTimer = new Cron.CronJob(
-	'00 00 10-22/2 * * 1-6', () => {
+	'00 00 10-22/4 * * 1-6', () => {
 		let text = 'Não recebemos nenhuma dúvida nas últimas horas.';
 
 		if (mailError.length > 0 && typeof mailError !== 'undefined') {
@@ -133,7 +133,7 @@ const MailTimer = new Cron.CronJob(
 	true, /* Starts the job right now (no need for MailTimer.start()) */
 	'America/Sao_Paulo',
 	false, // context
-	// Below: runOnInit = true TODO useful only for tests
+	// Below: runOnInit = true useful only for tests
 	false // eslint-disable-line comma-dangle
 );
 
