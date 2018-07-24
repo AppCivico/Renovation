@@ -18,7 +18,7 @@ module.exports = {
 		likeImage: 'https://gallery.mailchimp.com/926cb477483bcd8122304bc56/images/a5e8ffa7-c0c6-412e-82ba-b9e127ca2f91.png',
 	},
 	ask: {
-		firstMessage: 'A qualquer instante você pode digitar a sua dúvida e me mandar. 😳',
+		firstMessage: 'A qualquer instante você pode digitar a sua dúvida e me mandar. ;)',
 		secondMessage: 'O que gostaria de saber?',
 	},
 	mainMenu: {
@@ -59,8 +59,6 @@ module.exports = {
 		firstMessage: 'O curso do RenovaBR mescla aulas presenciais e à distância. A carga horária total é de 240 horas. Entre atividades obrigatórias e eletivas.',
 		secondMessage: 'Os integrantes do RenovaBR têm disciplinas de liderança, funcionamento do Legislativo, Teoria Geral do Estado, novas experiências políticas, ' +
 		'papel do Estado, eficiência do Governo, desafios do Brasil, Direito Eleitoral, cenário eleitoral, marketing político e media training, entre outros.',
-		// Além disso, cada liderança tem o acompanhamento de um coach da Sociedade Brasileira de Coaching.
-		// O profissional orienta o bolsista a encontrar suas maiores competências para produzir as mudanças necessárias da renovação política.',
 		excuseMe: 'Foi mal pelo textão, mas acho que respondi, né? 😀',
 		menuMsg: 'Que tal?',
 		menuOptions: ['Conta mais', 'Avançar', 'Entendi'],
@@ -78,15 +76,16 @@ module.exports = {
 		firstMessage: 'Para que as lideranças RenovaBR possam se dedicar exclusivamente ao processo de formação, eles recebem uma bolsa mensal entre R$ 5mil e R$ 12mil, ' +
 		'calculada com base no rendimento médio nominal mensal, de acordo com a Pesquisa Nacional de Amostra por Domicílio(PNAD), divulgada IBGE.',
 		secondMessage: 'E uma curiosidade: Alguns abriram mão da bolsa e mantêm suas despesas por conta própria. 😱',
-		thirdMessage: 'Também é importante frisar que não haverá qualquer tipo de investimento, pelo RenovaBR, em futuras campanhas políticas. 😉',
+		thirdMessage: 'Frisamos que não haverá qualquer tipo de investimento, pelo RenovaBR, em futuras campanhas políticas. 😉',
 		menuMsg: 'Tem muita coisa para contar! 😳',
 		menuOptions: ['Conta mais', 'Avançar', 'Quais regras?'],
-		menuPostback: ['paymentMore', 'paymentEnd', 'paymentRules'],
+		menuPostback: ['compensation', 'paymentEnd', 'rules'],
 		// -- more
 		fourthMessage: 'Você deve estar se perguntando. O que o RenovaBR espera em contrapartida... simples!',
 		fifthMessage: 'As lideranças do RenovaBR têm liberdade de ideologia e posicionamento. A única contrapartida que o RenovaBR exige de seus membros ' +
 		'é a assinatura de um compromisso com quatro regras fundamentais.',
 		// rules
+		rulePresentation: 'As quatros fundamentais regras que nossos membros seguem são:',
 		firstRule: 'MANDATO: Trabalhar no cargo até o último dia. O voto é um ato de confiança e deve ser respeitado. Chega de trampolim político.',
 		secondRule: 'TRANSPARÊNCIA: Dar satisfação permanente ao eleitor. Divulgar sua rotina de trabalho, posicionamentos e projetos. Prestar contas.',
 		thirdRule: 'RESPONSABILIDADE: Abrir mão e combater os privilégios do cargo. Adotar um modelo de gabinete enxuto e usar a verba parlamentar com consciência.',
@@ -94,6 +93,7 @@ module.exports = {
 		// -- end
 		endMessage: 'O que mais deseja saber? Pode me perguntar a qualquer hora. 😌',
 	},
+	// +compensation
 	join: {
 		firstMessage: 'Fiquei muito feliz! 😍',
 		secondMessage: 'Gente que está a fim de fazer parte é muito bom.',
@@ -120,7 +120,7 @@ module.exports = {
 		// ],
 	},
 	subscription: {
-		firstMessage: 'As inscrições já foram encerradas, mas acompanhe as nossas redes sociais,' +
+		firstMessage: 'As inscrições já foram encerradas, mas acompanhe as nossas redes sociais, ' +
 		'logo logo divulgaremos para ficar por dentro de todas as nossas novidades!',
 		secondMessage: 'Essa pergunta foi fácil! Me pergunte mais!',
 		endMessage: 'Vamos conversar mais! Você pode me perguntar ou escolher as opções. 😉',
@@ -139,21 +139,17 @@ module.exports = {
 	interview: {
 		firstMessage: 'Mais de 4 mil pessoas de todos os estados se inscreveram! 😱',
 		secondMessage: 'Todos passaram por etapas de teste online, vídeos de apresentação pessoal, entrevistas e banca avaliadora com especialistas em gestão pública e política. ',
-		thirdMessage: 'A segunda turma foi formada por lideranças selecionadas por meio de um processo de busca de perfis específicas, que não foram contemplados no ' +
-		'primeiro processo seletivo. Os critérios de seleção são os mesmos da primeira turma. Os novos integrantes do projeto cumprem mais três requisitos: geografia, ' +
-		'potencial e preparo. A meta foi selecionar 50 pessoas.',
 		menuOptions: ['Conta mais', 'Avançar'],
 		menuPostback: ['interviewMore', 'interviewEnd'],
 		// -- more
 		fourthMessage: 'Queria te contar sobre a banca seletora.',
 		fifthMessage: 'Depois dos testes da fase online, os pré-selecionados passaram por entrevistas individuais com membros do nosso time. ' +
-		'Após essa fase, participaram da banca, conduzida por especialistas de diversas áreas e repertórios. 😉',
+		'Após essa fase, participaram da banca, conduzida por especialistas de diversas áreas e repertórios. 😉', // used on +board
 		excuseMe: 'Foi mal pelo textão, mas acho que respondi, né? 😀',
 		// -- end
-		menuMsg: 'É, eu sei, eu falo bastante. 🙊',
-		endMessage: 'Mas eu quero falar mais! 😂 Você pode me perguntar algo digitando uma palavra-chave ou escolher as opções. 😉',
+		endMessage: 'Você pode me perguntar algo digitando uma palavra-chave ou escolher as opções. 😉',
 	},
-	// + board => uses repeated texts from interview
+	// +board
 	financing: {
 		firstMessage: 'O RenovaBR se mantém através das doações de pessoas físicas interessadas em apoiar um programa de renovação política feito com qualidade.',
 		secondMessage: 'Os doadores não têm nenhum contato com as lideranças do RenovaBR.',

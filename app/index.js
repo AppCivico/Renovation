@@ -249,7 +249,7 @@ bot.onEvent(async (context) => {
 				],
 			});
 			break;
-		case 'courseMore':
+		case 'content':
 			await context.sendText(flow.course.thirdMessage);
 			await context.sendText(flow.course.fourthMessage);
 			await context.sendText(flow.course.fifthMessage);
@@ -272,6 +272,8 @@ bot.onEvent(async (context) => {
 		case 'payment':
 			await context.sendText(flow.payment.firstMessage);
 			await context.sendText(flow.payment.secondMessage);
+			// falls through
+		case 'campaign':
 			await context.sendText(flow.payment.thirdMessage);
 			await context.sendText(flow.payment.menuMsg, {
 				quick_replies: [
@@ -288,7 +290,7 @@ bot.onEvent(async (context) => {
 				],
 			});
 			break;
-		case 'paymentMore':
+		case 'compensation':
 			await context.sendText(flow.payment.fourthMessage);
 			await context.sendText(flow.payment.fifthMessage, {
 				quick_replies: [
@@ -306,6 +308,19 @@ bot.onEvent(async (context) => {
 			});
 			break;
 		case 'paymentEnd':
+			await context.sendText(flow.course.endMessage, { quick_replies: menuOptions });
+			break;
+		case 'rules':
+			await context.sendText(flow.payment.rulePresentation);
+			await context.sendText(flow.payment.firstRule);
+			await context.sendText(flow.payment.secondRule);
+			await context.sendText(flow.payment.thirdRule);
+			await context.sendText(flow.payment.fourthRule);
+			await context.sendText(flow.course.endMessage, { quick_replies: menuOptions });
+			break;
+		case 'interview':
+			await context.sendText(flow.payment.fourthMessage);
+			await context.sendText(flow.payment.fifthMessage);
 			await context.sendText(flow.course.endMessage, { quick_replies: menuOptions });
 			break;
 		case 'board': // banca seletora
@@ -329,40 +344,6 @@ bot.onEvent(async (context) => {
 					},
 				],
 			});
-			break;
-		case 'paymentRules':
-			await context.sendText(flow.payment.firstRule);
-			await context.sendText(flow.payment.secondRule);
-			await context.sendText(flow.payment.thirdRule);
-			await context.sendText(flow.payment.fourthRule);
-			await context.sendText(flow.course.endMessage, { quick_replies: menuOptions });
-			break;
-		case 'interview':
-			await context.sendText(flow.interview.firstMessage);
-			await context.sendText(flow.interview.secondMessage);
-			await context.sendText(flow.interview.thirdMessage, {
-				quick_replies: [
-					{
-						content_type: 'text',
-						title: flow.interview.menuOptions[0],
-						payload: flow.interview.menuPostback[0],
-					},
-					{
-						content_type: 'text',
-						title: flow.interview.menuOptions[1],
-						payload: flow.interview.menuPostback[1],
-					},
-				],
-			});
-			break;
-		case 'interviewMore':
-			await context.sendText(flow.interview.fourthMessage);
-			await context.sendText(flow.interview.fifthMessage);
-			await context.sendText(flow.interview.menuMsg);
-			await context.sendText(flow.interview.endMessage, { quick_replies: menuOptions });
-			break;
-		case 'interviewEnd':
-			await context.sendText(flow.course.endMessage, { quick_replies: menuOptions });
 			break;
 		case 'financing':
 			await context.sendText(flow.financing.firstMessage);
