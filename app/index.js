@@ -84,6 +84,7 @@ bot.onEvent(async (context) => {
 				const payload = await context.event.message.text.replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, '');
 				if (payload) { // check if string isn't empty after removing emojis
 					if (context.event.message.text === process.env.RESTART) {
+						await context.resetState();
 						await context.setState({ dialog: 'greetings' });
 					} else {
 						await context.setState({ userText: context.event.message.text });
@@ -306,6 +307,28 @@ bot.onEvent(async (context) => {
 			break;
 		case 'paymentEnd':
 			await context.sendText(flow.course.endMessage, { quick_replies: menuOptions });
+			break;
+		case 'board': // banca seletora
+			await context.sendText(flow.interview.fifthMessage);
+			await context.sendText(flow.submenu.menuMsg, {
+				quick_replies: [
+					{
+						content_type: 'text',
+						title: flow.submenu.menuOptions[0],
+						payload: flow.submenu.menuPostback[0],
+					},
+					{
+						content_type: 'text',
+						title: flow.submenu.menuOptions[1],
+						payload: flow.submenu.menuPostback[1],
+					},
+					{
+						content_type: 'text',
+						title: flow.submenu.menuOptions[2],
+						payload: flow.submenu.menuPostback[2],
+					},
+				],
+			});
 			break;
 		case 'paymentRules':
 			await context.sendText(flow.payment.firstRule);
