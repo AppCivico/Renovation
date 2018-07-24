@@ -146,11 +146,7 @@ module.exports = {
 		menuMsg: 'É, eu sei, eu falo bastante. 🙊',
 		endMessage: 'Mas eu quero falar mais! 😂 Você pode me perguntar algo digitando uma palavra-chave ou escolher as opções. 😉',
 	},
-	// theBoard: { // banca seletora
-	// 	firstMessage: interview.fifthMessage,
-	// 	menuOptions: ['Sobre RenovaBR', 'Lideranças', 'Fazer Parte'],
-	// 	menuPostback: ['about', 'scholarship', 'join'],
-	// },
+	// + board => uses repeated texts from interview
 	financing: {
 		firstMessage: 'O RenovaBR se mantém através das doações de pessoas físicas interessadas em apoiar um programa de renovação política feito com qualidade.',
 		secondMessage: 'Os doadores não têm nenhum contato com as lideranças do RenovaBR.',
