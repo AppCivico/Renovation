@@ -25,6 +25,7 @@ function createGetStarted() {
 			],
 		},
 	}, (error, response, body) => {
+		console.log('\nMensagem de boas-vindas:');
 		console.log('error:', error);
 		console.log('statusCode:', response && response.statusCode);
 		console.log('body:', body);
@@ -47,7 +48,7 @@ function createPersistentMenu() {
 						},
 						{
 							type: 'postback',
-							title: 'Bolsistas',
+							title: 'Líderes',
 							payload: 'scholarship',
 						},
 						{
@@ -65,6 +66,7 @@ function createPersistentMenu() {
 			],
 		},
 	}, (error, response, body) => {
+		console.log('\nMenu lateral:');
 		console.log('error:', error);
 		console.log('statusCode:', response && response.statusCode);
 		console.log('body:', body);

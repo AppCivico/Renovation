@@ -27,12 +27,11 @@ module.exports = {
 		menuPostback: ['about', 'scholarship', 'join'],
 	},
 	about: {
-		firstMessage: 'O RenovaBR surgiu em outubro de 2017 da necessidade da sociedade de sair do discurso para ações concretas para melhorar a política brasileira. ' +
-		'Queremos fazer com que o brasileiro volte a acreditar e participar da política.',
-		secondMessage: 'RenovaBR prepara gente comprometida e realizadora para entrar na política. Selecionamos novas lideranças do país inteiro ' +
-		'para enfrentar e vencer as velhas práticas.',
-		thirdMessage: 'No lugar das campanhas milionárias, pessoas conversando com pessoas. ' +
-		'Em vez do vale-tudo pelo poder, propostas sinceras e soluções que se tornem realidade.',
+		firstMessage: 'O RenovaBR prepara gente comprometida e realizadora para entrar na política. Selecionamos novas lideranças do país inteiro para enfrentar ' +
+		'e vencer as velhas práticas. No lugar das campanhas milionárias, pessoas conversando com pessoas. Em vez do vale-tudo pelo poder, ' +
+		'propostas sinceras e soluções que se tornem realidade.',
+		secondMessage: 'O RenovaBR surgiu em outubro de 2017 da necessidade da sociedade de sair do discurso para ações concretas para melhorar a política brasileira.',
+		thirdMessage: ' Queremos fazer com que o brasileiro volte a acreditar e participar da política.',
 		menuOptions: ['Conta mais', 'Voltar', 'Entendi'],
 		menuPostback: ['aboutMore', 'mainMenu', 'mainMenu'],
 	},
@@ -44,7 +43,7 @@ module.exports = {
 		menuOptions: ['Conta mais', 'Avançar', 'Entendi'],
 		menuPostback: ['scholarshipMore', 'scholarshipEnd', 'mainMenu'],
 		// -- more
-		thirdMessage: 'Sabe quantos candidatos o RonovaBR pretende lançar?',
+		thirdMessage: 'Sabe quantos candidatos o RenovaBR pretende lançar?',
 		fourthMessage: 'O objetivo é formar lideranças políticas com conhecimento da realidade brasileira para que eles tomem a decisão de lançarem candidaturas ou não. ' +
 		'O RenovaBR não é um partido político. 👍 É uma escola de excelência na capacitação e fomento de novos líderes para fazer a tão desejada renovação política. ' +
 		'👊',
@@ -140,13 +139,18 @@ module.exports = {
 		menuPostback: ['interviewMore', 'interviewEnd'],
 		// -- more
 		fourthMessage: 'Queria te contar sobre a banca seletora.',
-		fifthMessage: 'Depois dos testes da fase online, os pré-selecionados passaram por entrevistas individuais com membros do nosso time.' +
+		fifthMessage: 'Depois dos testes da fase online, os pré-selecionados passaram por entrevistas individuais com membros do nosso time. ' +
 		'Após essa fase, participaram da banca, conduzida por especialistas de diversas áreas e repertórios. 😉',
 		excuseMe: 'Foi mal pelo textão, mas acho que respondi, né? 😀',
 		// -- end
 		menuMsg: 'É, eu sei, eu falo bastante. 🙊',
 		endMessage: 'Mas eu quero falar mais! 😂 Você pode me perguntar algo digitando uma palavra-chave ou escolher as opções. 😉',
 	},
+	// theBoard: { // banca seletora
+	// 	firstMessage: interview.fifthMessage,
+	// 	menuOptions: ['Sobre RenovaBR', 'Lideranças', 'Fazer Parte'],
+	// 	menuPostback: ['about', 'scholarship', 'join'],
+	// },
 	financing: {
 		firstMessage: 'O RenovaBR se mantém através das doações de pessoas físicas interessadas em apoiar um programa de renovação política feito com qualidade.',
 		secondMessage: 'Os doadores não têm nenhum contato com as lideranças do RenovaBR.',
