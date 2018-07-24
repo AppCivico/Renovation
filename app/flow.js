@@ -62,7 +62,7 @@ module.exports = {
 		excuseMe: 'Foi mal pelo textão, mas acho que respondi, né? 😀',
 		menuMsg: 'Que tal?',
 		menuOptions: ['Conta mais', 'Avançar', 'Entendi'],
-		menuPostback: ['courseMore', 'courseEnd', 'mainMenu'],
+		menuPostback: ['difference', 'courseEnd', 'mainMenu'],
 		// -- more
 		thirdMessage: 'Sabe o que difere o curso do RenovaBR das formações feitas pelos partidos?',
 		fourthMessage: 'A diferença é que no RenovaBR os problemas estão no centro das discussões. Há bolsistas liberais, progressistas, conservadores, socialistas, trabalhistas, ' +
@@ -77,7 +77,7 @@ module.exports = {
 		'calculada com base no rendimento médio nominal mensal, de acordo com a Pesquisa Nacional de Amostra por Domicílio(PNAD), divulgada IBGE.',
 		secondMessage: 'E uma curiosidade: Alguns abriram mão da bolsa e mantêm suas despesas por conta própria. 😱',
 		thirdMessage: 'Frisamos que não haverá qualquer tipo de investimento, pelo RenovaBR, em futuras campanhas políticas. 😉',
-		menuMsg: 'Tem muita coisa para contar! 😳',
+		menuMsg: 'Tem muita coisa para contar! 😊',
 		menuOptions: ['Conta mais', 'Avançar', 'Quais regras?'],
 		menuPostback: ['compensation', 'paymentEnd', 'rules'],
 		// -- more

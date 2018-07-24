@@ -249,7 +249,7 @@ bot.onEvent(async (context) => {
 				],
 			});
 			break;
-		case 'content':
+		case 'difference':
 			await context.sendText(flow.course.thirdMessage);
 			await context.sendText(flow.course.fourthMessage);
 			await context.sendText(flow.course.fifthMessage);
