@@ -219,7 +219,7 @@ bot.onEvent(async (context) => {
 			await context.sendText(flow.join.secondMessage);
 			await context.sendText(flow.join.thirdMessage);
 			await context.sendText(flow.join.fourthMessage);
-			await attach.sendCarousel(context, flow.join);
+			await attach.sendCarouselShare(context, flow.join);
 			await context.sendText(flow.join.menuMsg, {
 				quick_replies: [
 					{

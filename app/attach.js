@@ -106,3 +106,59 @@ async function sendCarousel(context, links) {
 }
 
 module.exports.sendCarousel = sendCarousel;
+
+async function sendCarouselShare(context, links) {
+	await context.sendAttachment({
+		type: 'template',
+		payload: {
+			template_type: 'generic',
+			elements: [
+				{
+					title: links.siteTitle[0],
+					subtitle: links.siteSubTitle[0],
+					image_url: links.imageURL[0],
+					default_action: {
+						type: 'web_url',
+						url: links.siteURL[0],
+						messenger_extensions: 'false',
+						webview_height_ratio: 'full',
+					},
+					buttons: [{
+						type: 'web_url',
+						url: links.siteURL[0],
+						title: links.siteTitle[0],
+					}],
+				},
+				{
+					title: links.siteTitle[1],
+					subtitle: links.siteSubTitle[1],
+					image_url: links.imageURL[1],
+					item_url: links.siteURL[1],
+					buttons: [{
+						type: 'element_share',
+					}],
+				},
+			],
+		},
+	});
+}
+
+module.exports.sendCarouselShare = sendCarouselShare;
+
+// facebook: {
+// 	attachment: {
+// 		type: 'template',
+// 			payload: {
+// 			template_type: 'generic',
+// 				elements: [{
+// 					title: 'Olá! Eu sou o Guaxi!',
+// 					subtitle: 'O chatbot mais transparente e engajado da internet! Venha conversar comigo!',
+// 					image_url: 'https://gallery.mailchimp.com/cdabeff22c56cd4bd6072bf29/images/8e84d7d3-bba7-43be-acac-733dd6712f78.png',
+// 					item_url: 'http://m.me/gastosabertos',
+// 					buttons: [{
+// 						type: 'element_share',
+// 					}],
+// 				}],
+// 					},
+// 	},
+// },

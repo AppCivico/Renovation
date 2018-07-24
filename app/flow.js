@@ -105,12 +105,19 @@ module.exports = {
 		// -- attach
 		button: 'Entendi',
 		postback: 'mainMenu',
-		siteTitle: ['Doar', 'Torne-se vonluntário'],
-		siteURL: ['http://renovabr.org/doe', 'http://renovabr.org/participe/'],
+		siteTitle: ['Torne-se vonluntário', 'Compartilhe o Renova'],
+		siteSubTitle: ['Faça parte do time', 'Mostre seu apoio!'],
+		siteURL: ['http://renovabr.org/participe/', 'http://renovabr.org'],
 		imageURL: [
-			'https://www.kickante.com.br/sites/default/files/styles/campaign_pitch_image/public/financiamento-coletivo/pitch/vamos_renovar_a_politica_do_brasil-717728.png?itok=4h6djkP6',
 			'http://renovabr.org/wp-content/uploads/2018/01/img-participate.jpg',
+			'http://renovabr.org/wp-content/uploads/2018/04/brasil-tem-jeito.png',
 		],
+		// .....old
+		// siteURL: ['http://renovabr.org/doe', 'http://renovabr.org/participe/'],
+		// imageURL: [
+		// 	'https://www.kickante.com.br/sites/default/files/styles/campaign_pitch_image/public/financiamento-coletivo/pitch/vamos_renovar_a_politica_do_brasil-717728.png?itok=4h6djkP6',
+		// 	'http://renovabr.org/wp-content/uploads/2018/01/img-participate.jpg',
+		// ],
 	},
 	subscription: {
 		firstMessage: 'As inscrições já foram encerradas, mas acompanhe as nossas redes sociais,' +
@@ -150,11 +157,11 @@ module.exports = {
 	financing: {
 		firstMessage: 'O RenovaBR se mantém através das doações de pessoas físicas interessadas em apoiar um programa de renovação política feito com qualidade.',
 		secondMessage: 'Os doadores não têm nenhum contato com as lideranças do RenovaBR.',
-		thirdMessage: 'Todos podem doar por meio do financiamento coletivo no site:',
+		thirdMessage: 'Todos podem participar por meio do nosso site:',
 		endMessage: 'Vamos conversar mais! Você pode me perguntar ou escolher as opções. 😉',
 		// -- attachment
-		siteURL: 'https://www.kickante.com.br/campanhas/renovabr-novos-politicos-no-brasil',
-		imageURL: 'https://www.kickante.com.br/sites/default/files/styles/campaign_pitch_image/public/financiamento-coletivo/pitch/vamos_renovar_a_politica_do_brasil-717728.png?itok=4h6djkP6',
+		siteURL: 'http://renovabr.org/participe/',
+		imageURL: 'http://renovabr.org/wp-content/uploads/2018/01/img-participate.jpg',
 		siteTitle: 'Vamos renovar a política do Brasil',
 	},
 	contact: {
