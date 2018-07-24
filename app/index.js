@@ -7,7 +7,7 @@ const { FileSessionStore } = require('bottender');
 const moment = require('moment');
 const apiai = require('apiai-promise');
 
-// const postbacks = require('./postback');
+const postbacks = require('./postback');
 const mailer = require('./mailer');
 const flow = require('./flow');
 const attach = require('./attach');
