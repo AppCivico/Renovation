@@ -49,7 +49,7 @@ module.exports = {
 		'👊',
 		// -- end
 		extraMessage: 'Legal, né?',
-		endMessage: 'Vamos conversar mais! Você pode me perguntar ou escolher as opções. 😉',
+		endMessage: 'Vamos conversar mais! Você pode me perguntar ou escolher as opções: 😉',
 		// -- attachment
 		siteURL: 'http://renovabr.org/bolsistas/',
 		imageURL: 'http://renovabr.org/wp-content/uploads/2018/04/brasil-tem-jeito.png',
@@ -62,7 +62,7 @@ module.exports = {
 		excuseMe: 'Foi mal pelo textão, mas acho que respondi, né? 😀',
 		menuMsg: 'Que tal?',
 		menuOptions: ['Conta mais', 'Avançar', 'Entendi'],
-		menuPostback: ['difference', 'courseEnd', 'mainMenu'],
+		menuPostback: ['courseMore', 'courseEnd', 'mainMenu'],
 		// -- more
 		thirdMessage: 'Sabe o que difere o curso do RenovaBR das formações feitas pelos partidos?',
 		fourthMessage: 'A diferença é que no RenovaBR os problemas estão no centro das discussões. Há bolsistas liberais, progressistas, conservadores, socialistas, trabalhistas, ' +
@@ -79,7 +79,7 @@ module.exports = {
 		thirdMessage: 'Frisamos que não haverá qualquer tipo de investimento, pelo RenovaBR, em futuras campanhas políticas. 😉',
 		menuMsg: 'Tem muita coisa para contar! 😊',
 		menuOptions: ['Conta mais', 'Avançar', 'Quais regras?'],
-		menuPostback: ['compensation', 'paymentEnd', 'rules'],
+		menuPostback: ['paymentMore', 'paymentEnd', 'rules'],
 		// -- more
 		fourthMessage: 'Você deve estar se perguntando. O que o RenovaBR espera em contrapartida... simples!',
 		fifthMessage: 'As lideranças do RenovaBR têm liberdade de ideologia e posicionamento. A única contrapartida que o RenovaBR exige de seus membros ' +
@@ -142,8 +142,8 @@ module.exports = {
 		menuOptions: ['Conta mais', 'Avançar'],
 		menuPostback: ['interviewMore', 'interviewEnd'],
 		// -- more
-		fourthMessage: 'Queria te contar sobre a banca seletora.',
-		fifthMessage: 'Depois dos testes da fase online, os pré-selecionados passaram por entrevistas individuais com membros do nosso time. ' +
+		thirdMessage: 'Queria te contar sobre a banca seletora.',
+		fourthMessage: 'Depois dos testes da fase online, os pré-selecionados passaram por entrevistas individuais com membros do nosso time. ' +
 		'Após essa fase, participaram da banca, conduzida por especialistas de diversas áreas e repertórios. 😉', // used on +board
 		excuseMe: 'Foi mal pelo textão, mas acho que respondi, né? 😀',
 		// -- end
