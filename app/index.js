@@ -91,7 +91,7 @@ bot.onEvent(async (context) => {
 						const response = await app.textRequest(payload, {
 							sessionId: context.session.user.id,
 						});
-						console.log(response.result.metadata.intentName);
+						// console.log(response.result.metadata.intentName);
 						await context.setState({ dialog: response.result.metadata.intentName });
 					}
 				} else {
