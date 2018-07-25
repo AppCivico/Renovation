@@ -7,14 +7,14 @@ const { FileSessionStore } = require('bottender');
 const moment = require('moment');
 const apiai = require('apiai-promise');
 
-const postbacks = require('./postback');
+// const postbacks = require('./postback');
 const mailer = require('./mailer');
 const flow = require('./flow');
 const attach = require('./attach');
 
 console.log(`Crontab MailTimer is running? => ${mailer.MailTimer.running}`);
 
-const timeLimit = 1000 * 60 * 120; // 120 minutes
+const timeLimit = 1000 * 60 * 60 * 4; // 4 hours
 
 const app = apiai(process.env.DIALOGFLOW_TOKEN);
 const menuOptions = [
@@ -91,10 +91,7 @@ bot.onEvent(async (context) => {
 						const response = await app.textRequest(payload, {
 							sessionId: context.session.user.id,
 						});
-						// await context.sendText(` Você digitou ${context.event.message.text}` +
-						// `!\nIntent: ${response.result.metadata.intentName}`);
 						// console.log(response.result.metadata.intentName);
-
 						await context.setState({ dialog: response.result.metadata.intentName });
 					}
 				} else {
@@ -206,6 +203,8 @@ bot.onEvent(async (context) => {
 			break;
 		case 'scholarshipMore':
 			await context.sendText(flow.scholarship.thirdMessage);
+			// falls through
+		case 'release':
 			await context.sendText(flow.scholarship.fourthMessage);
 			await context.sendText(flow.scholarship.extraMessage);
 			await context.sendText(flow.scholarship.endMessage, { quick_replies: menuOptions });
@@ -251,6 +250,8 @@ bot.onEvent(async (context) => {
 			break;
 		case 'courseMore':
 			await context.sendText(flow.course.thirdMessage);
+			// falls through
+		case 'difference':
 			await context.sendText(flow.course.fourthMessage);
 			await context.sendText(flow.course.fifthMessage);
 			await context.sendText(flow.course.endMessage, { quick_replies: menuOptions });
@@ -272,6 +273,8 @@ bot.onEvent(async (context) => {
 		case 'payment':
 			await context.sendText(flow.payment.firstMessage);
 			await context.sendText(flow.payment.secondMessage);
+			// falls through
+		case 'campaign':
 			await context.sendText(flow.payment.thirdMessage);
 			await context.sendText(flow.payment.menuMsg, {
 				quick_replies: [
@@ -290,6 +293,8 @@ bot.onEvent(async (context) => {
 			break;
 		case 'paymentMore':
 			await context.sendText(flow.payment.fourthMessage);
+		// falls through
+		case 'compensation':
 			await context.sendText(flow.payment.fifthMessage, {
 				quick_replies: [
 					{
@@ -308,8 +313,36 @@ bot.onEvent(async (context) => {
 		case 'paymentEnd':
 			await context.sendText(flow.course.endMessage, { quick_replies: menuOptions });
 			break;
+		case 'rules':
+			await context.sendText(flow.payment.rulePresentation);
+			await context.sendText(flow.payment.firstRule);
+			await context.sendText(flow.payment.secondRule);
+			await context.sendText(flow.payment.thirdRule);
+			await context.sendText(flow.payment.fourthRule);
+			await context.sendText(flow.course.endMessage, { quick_replies: menuOptions });
+			break;
+		case 'interview':
+			await context.sendText(flow.interview.firstMessage);
+			await context.sendText(flow.interview.secondMessage, {
+				quick_replies: [
+					{
+						content_type: 'text',
+						title: flow.interview.menuOptions[0],
+						payload: flow.interview.menuPostback[0],
+					},
+					{
+						content_type: 'text',
+						title: flow.interview.menuOptions[1],
+						payload: flow.interview.menuPostback[1],
+					},
+				],
+			});
+			break;
+		case 'interviewMore':
+			await context.sendText(flow.interview.thirdMessage);
+		// falls through
 		case 'board': // banca seletora
-			await context.sendText(flow.interview.fifthMessage);
+			await context.sendText(flow.interview.fourthMessage);
 			await context.sendText(flow.submenu.menuMsg, {
 				quick_replies: [
 					{
@@ -329,40 +362,6 @@ bot.onEvent(async (context) => {
 					},
 				],
 			});
-			break;
-		case 'paymentRules':
-			await context.sendText(flow.payment.firstRule);
-			await context.sendText(flow.payment.secondRule);
-			await context.sendText(flow.payment.thirdRule);
-			await context.sendText(flow.payment.fourthRule);
-			await context.sendText(flow.course.endMessage, { quick_replies: menuOptions });
-			break;
-		case 'interview':
-			await context.sendText(flow.interview.firstMessage);
-			await context.sendText(flow.interview.secondMessage);
-			await context.sendText(flow.interview.thirdMessage, {
-				quick_replies: [
-					{
-						content_type: 'text',
-						title: flow.interview.menuOptions[0],
-						payload: flow.interview.menuPostback[0],
-					},
-					{
-						content_type: 'text',
-						title: flow.interview.menuOptions[1],
-						payload: flow.interview.menuPostback[1],
-					},
-				],
-			});
-			break;
-		case 'interviewMore':
-			await context.sendText(flow.interview.fourthMessage);
-			await context.sendText(flow.interview.fifthMessage);
-			await context.sendText(flow.interview.menuMsg);
-			await context.sendText(flow.interview.endMessage, { quick_replies: menuOptions });
-			break;
-		case 'interviewEnd':
-			await context.sendText(flow.course.endMessage, { quick_replies: menuOptions });
 			break;
 		case 'financing':
 			await context.sendText(flow.financing.firstMessage);
