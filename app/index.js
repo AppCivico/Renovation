@@ -202,7 +202,7 @@ bot.onEvent(async (context) => {
 			});
 			break;
 		case 'scholarshipMore':
-			await context.sendText(flow.scholarship.thirdMessage);
+			// await context.sendText(flow.scholarship.thirdMessage);
 			// falls through
 		case 'release':
 			await context.sendText(flow.scholarship.fourthMessage);

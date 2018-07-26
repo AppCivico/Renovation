@@ -4,7 +4,7 @@
 
 module.exports = {
 	greetings: {
-		welcome: 'Olá, sou a Cora. A coruja robô assistente do RenovaBR. Clique em \'Começar\' para falar comigo!',
+		welcome: 'Olá, sou a Cora. A robô assistente do RenovaBR. Clique em \'Começar\' para falar comigo!',
 		greetImage: 'https://gallery.mailchimp.com/926cb477483bcd8122304bc56/images/4420da53-ea8f-4f7f-b3eb-6eb982603e7a.png',
 		firstMessage: 'Olá, sou a Cora. A coruja robô assistente do RenovaBR.',
 		secondMessage: 'Estou aqui para responder as perguntas frequentes.',
@@ -43,7 +43,7 @@ module.exports = {
 		menuOptions: ['Conta mais', 'Avançar', 'Entendi'],
 		menuPostback: ['scholarshipMore', 'scholarshipEnd', 'mainMenu'],
 		// -- more
-		thirdMessage: 'Sabe quantos candidatos o RenovaBR pretende lançar?',
+		// thirdMessage: 'Sabe quantos candidatos o RenovaBR pretende lançar?',
 		fourthMessage: 'O objetivo é formar lideranças políticas com conhecimento da realidade brasileira para que eles tomem a decisão de lançarem candidaturas ou não. ' +
 		'O RenovaBR não é um partido político. 👍 É uma escola de excelência na capacitação e fomento de novos líderes para fazer a tão desejada renovação política. ' +
 		'👊',
