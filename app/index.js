@@ -151,10 +151,10 @@ bot.onEvent(async (context) => {
 			await context.sendText(flow.ask.secondMessage);
 			break;
 		case 'mainMenu':
-			await context.sendText(flow.mainMenu.menuMsg, menuOptions);
+			await context.sendButtonTemplate(flow.mainMenu.menuMsg, menuOptions);
 			break;
 		case 'about':
-			await context.sendText(flow.about.firstMessage, [
+			await context.sendButtonTemplate(flow.about.firstMessage, [
 				{
 					type: 'postback',
 					title: flow.about.menuOptions[0],
@@ -170,7 +170,7 @@ bot.onEvent(async (context) => {
 			break;
 		case 'aboutMore':
 			await context.sendText(flow.about.secondMessage);
-			await context.sendText(flow.about.thirdMessage, [
+			await context.sendButtonTemplate(flow.about.thirdMessage, [
 				{
 					type: 'postback',
 					title: flow.about.menuOptions[2],
@@ -183,7 +183,7 @@ bot.onEvent(async (context) => {
 			await context.sendText(flow.scholarship.secondMessage);
 			await attach.send(context, flow.scholarship);
 
-			await context.sendText(flow.scholarship.menuMsg, [
+			await context.sendButtonTemplate(flow.scholarship.menuMsg, [
 				{
 					type: 'postback',
 					title: flow.scholarship.menuOptions[0],
@@ -202,11 +202,11 @@ bot.onEvent(async (context) => {
 		case 'release':
 			await context.sendText(flow.scholarship.fourthMessage);
 			await context.sendText(flow.scholarship.extraMessage);
-			await context.sendText(flow.scholarship.endMessage, menuOptions);
+			await context.sendButtonTemplate(flow.scholarship.endMessage, menuOptions);
 			break;
 		case 'scholarshipEnd':
 			await context.sendText(flow.scholarship.extraMessage);
-			await context.sendText(flow.scholarship.endMessage, menuOptions);
+			await context.sendButtonTemplate(flow.scholarship.endMessage, menuOptions);
 			break;
 		case 'join':
 			await context.sendText(flow.join.firstMessage);
@@ -214,7 +214,7 @@ bot.onEvent(async (context) => {
 			await context.sendText(flow.join.thirdMessage);
 			await context.sendText(flow.join.fourthMessage);
 			await attach.sendCarouselShare(context, flow.join);
-			await context.sendText(flow.join.menuMsg, [
+			await context.sendButtonTemplate(flow.join.menuMsg, [
 				{
 					type: 'postback',
 					title: flow.join.menuOptions[0],
@@ -226,7 +226,7 @@ bot.onEvent(async (context) => {
 			await context.sendText(flow.course.firstMessage);
 			await context.sendText(flow.course.secondMessage);
 			await context.sendText(flow.course.excuseMe);
-			await context.sendText(flow.course.menuMsg, [
+			await context.sendButtonTemplate(flow.course.menuMsg, [
 				{
 					type: 'postback',
 					title: flow.course.menuOptions[0],
@@ -245,15 +245,15 @@ bot.onEvent(async (context) => {
 		case 'difference':
 			await context.sendText(flow.course.fourthMessage);
 			await context.sendText(flow.course.fifthMessage);
-			await context.sendText(flow.course.endMessage, menuOptions);
+			await context.sendButtonTemplate(flow.course.endMessage, menuOptions);
 			break;
 		case 'courseEnd':
-			await context.sendText(flow.course.endMessage, menuOptions);
+			await context.sendButtonTemplate(flow.course.endMessage, menuOptions);
 			break;
 		case 'subscription':
 			await context.sendText(flow.subscription.firstMessage);
 			await context.sendText(flow.subscription.secondMessage);
-			await context.sendText(flow.subscription.endMessage, menuOptions);
+			await context.sendButtonTemplate(flow.subscription.endMessage, menuOptions);
 			break;
 		case 'position':
 			await context.sendText(flow.position.firstMessage);
@@ -267,7 +267,7 @@ bot.onEvent(async (context) => {
 			// falls through
 		case 'campaign':
 			await context.sendText(flow.payment.thirdMessage);
-			await context.sendText(flow.payment.menuMsg, [
+			await context.sendButtonTemplate(flow.payment.menuMsg, [
 				{
 					type: 'postback',
 					title: flow.payment.menuOptions[0],
@@ -284,7 +284,7 @@ bot.onEvent(async (context) => {
 			await context.sendText(flow.payment.fourthMessage);
 		// falls through
 		case 'compensation':
-			await context.sendText(flow.payment.fifthMessage, [
+			await context.sendButtonTemplate(flow.payment.fifthMessage, [
 				{
 					type: 'postback',
 					title: flow.payment.menuOptions[2],
@@ -298,7 +298,7 @@ bot.onEvent(async (context) => {
 			]);
 			break;
 		case 'paymentEnd':
-			await context.sendText(flow.course.endMessage, menuOptions);
+			await context.sendButtonTemplate(flow.course.endMessage, menuOptions);
 			break;
 		case 'rules':
 			await context.sendText(flow.payment.rulePresentation);
@@ -306,11 +306,11 @@ bot.onEvent(async (context) => {
 			await context.sendText(flow.payment.secondRule);
 			await context.sendText(flow.payment.thirdRule);
 			await context.sendText(flow.payment.fourthRule);
-			await context.sendText(flow.course.endMessage, menuOptions);
+			await context.sendButtonTemplate(flow.course.endMessage, menuOptions);
 			break;
 		case 'interview':
 			await context.sendText(flow.interview.firstMessage);
-			await context.sendText(flow.interview.secondMessage, [
+			await context.sendButtonTemplate(flow.interview.secondMessage, [
 				{
 					type: 'postback',
 					title: flow.interview.menuOptions[0],
@@ -328,7 +328,7 @@ bot.onEvent(async (context) => {
 		// falls through
 		case 'board': // banca seletora
 			await context.sendText(flow.interview.fourthMessage);
-			await context.sendText(flow.submenu.menuMsg, [
+			await context.sendButtonTemplate(flow.submenu.menuMsg, [
 				{
 					type: 'postback',
 					title: flow.submenu.menuOptions[0],
@@ -354,7 +354,7 @@ bot.onEvent(async (context) => {
 			break;
 		case 'contact':
 			await context.sendText(flow.contact.firstMessage + flow.contact.siteURL);
-			await context.sendText(flow.contact.secondMessage, menuOptions);
+			await context.sendButtonTemplate(flow.contact.secondMessage, menuOptions);
 			break;
 		case 'error':
 			if (context.state.userText) {
@@ -372,8 +372,8 @@ bot.onEvent(async (context) => {
 			await context.sendText(flow.error.firstMessage);
 			await context.sendText(flow.error.secondMessage);
 			await context.sendText(flow.error.thirdMessage);
-			// await context.sendText(flow.error.menuMsg, menuOptions );
-			await context.sendText(flow.error.askContact, [
+			// await context.sendButtonTemplate(flow.error.menuMsg, menuOptions );
+			await context.sendButtonTemplate(flow.error.askContact, [
 				{
 					type: 'postback',
 					title: flow.error.menuOptions[0],
@@ -388,7 +388,7 @@ bot.onEvent(async (context) => {
 			break;
 		case 'doubt':
 			await context.sendText(flow.doubt.firstMessage);
-			await context.sendText(flow.doubt.secondMessage, [
+			await context.sendButtonTemplate(flow.doubt.secondMessage, [
 				{
 					type: 'postback',
 					title: flow.doubt.menuOptions[0],
@@ -399,7 +399,7 @@ bot.onEvent(async (context) => {
 			break;
 		case 'email':
 			await context.sendText(flow.email.firstMessage);
-			await context.sendText(flow.email.secondMessage, [
+			await context.sendButtonTemplate(flow.email.secondMessage, [
 				{
 					type: 'postback',
 					title: flow.email.menuOptions[0],
@@ -418,7 +418,7 @@ bot.onEvent(async (context) => {
 			await context.setState({ userDoubt: '' });
 			await context.setState({ userMail: '' });
 			await context.sendText(flow.email.endMessage);
-			await context.sendText(flow.mainMenu.menuMsg, menuOptions);
+			await context.sendButtonTemplate(flow.mainMenu.menuMsg, menuOptions);
 			await context.setState({ dialog: 'mainMenu' });
 			break;
 		}
