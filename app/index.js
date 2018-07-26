@@ -1,8 +1,9 @@
 require('dotenv').config();
 
 const { MessengerBot } = require('bottender');
-const { createServer } = require('bottender/restify');
+const { withTyping } = require('bottender');
 const { FileSessionStore } = require('bottender');
+const { createServer } = require('bottender/restify');
 
 const moment = require('moment');
 const apiai = require('apiai-promise');
@@ -15,6 +16,7 @@ const attach = require('./attach');
 console.log(`Crontab MailTimer is running? => ${mailer.MailTimer.running}`);
 
 const timeLimit = 1000 * 60 * 60 * 4; // 4 hours
+const messageWaiting = eval(process.env.TIME_WAIT); // eslint-disable-line no-eval
 
 const app = apiai(process.env.DIALOGFLOW_TOKEN);
 const menuOptions = [
@@ -46,6 +48,10 @@ const bot = new MessengerBot({
 	verifyToken: config.verifyToken,
 	sessionStore: new FileSessionStore(),
 });
+
+if (messageWaiting) {
+	bot.use(withTyping({ delay: messageWaiting }));
+}
 
 bot.onEvent(async (context) => {
 	if (!context.event.isDelivery && !context.event.isEcho && !context.event.isRead) {

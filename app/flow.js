@@ -36,8 +36,10 @@ module.exports = {
 		menuPostback: ['aboutMore', 'mainMenu', 'mainMenu'],
 	},
 	scholarship: {
-		firstMessage: 'Temos homens, mulheres, indígenas, de diversos partidos do país inteiro, com diferentes ideias, mas que têm em comum a crença de que política é lugar de honestidade, diálogo e dedicação.',
-		secondMessage: 'Gente que conhece de perto nossos problemas e tem disposição e capacidade para enfrentá-los. 👊 Acesse o nosso site www.renovabr.org/bolsistas para conhecer melhor cada liderança. 🙂',
+		firstMessage: 'Temos homens e mulheres de diversos partidos do país inteiro, com diferentes ideias, mas que têm em comum a crença de que política é lugar de ' +
+		'honestidade, diálogo e dedicação.',
+		secondMessage: 'Gente que conhece de perto nossos problemas e tem disposição e capacidade para enfrentá-los. 👊 Acesse o nosso site ' +
+		'www.renovabr.org/bolsistas para conhecer melhor cada liderança. 🙂',
 		image: '<aquele link pro site aqui>',
 		menuMsg: 'Que tal?',
 		menuOptions: ['Conta mais', 'Avançar', 'Entendi'],
