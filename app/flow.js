@@ -128,8 +128,8 @@ module.exports = {
 		endMessage: 'Vamos conversar mais! Você pode me perguntar ou escolher as opções. 😉',
 	},
 	position: {
-		firstMessage: 'RenovaBR de esquerda ou de direita? tchan tchan tchan',
-		secondMessage: 'As lideranças do RenovaBR têm liberdade de ideologia e posicionamento. ' +
+		firstMessage: 'RenovaBR de esquerda ou de direita?',
+		secondMessage: 'O RenovaBR não é um partido político. \nAs lideranças do RenovaBR têm liberdade de ideologia e posicionamento. ' +
 		'Temos lideranças de diversos espectros políticos, dá uma olhada aqui para conhecê-los melhor:',
 		site: 'http://renovabr.org/bolsistas/',
 		endMessage: 'Vamos conversar mais! Você pode me perguntar ou escolher as opções. 😉',
