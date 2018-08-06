@@ -13,7 +13,7 @@ export LISTEN_PORT=2500
 
 docker run --name renova \
  -v $SOURCE_DIR:/src -v $DATA_DIR:/data \
- -p $DOCKER_LAN_IP:$LISTEN_PORT:2049 \
+ -p $DOCKER_LAN_IP:$LISTEN_PORT:2500 \
  --cpu-shares=512 \
  --memory 1800m -dit --restart unless-stopped appcivico/renova
 
