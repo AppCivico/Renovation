@@ -173,7 +173,7 @@ module.exports = {
 	error: {
 		firstMessage: 'Eu não entendi, me desculpa? 😔',
 		secondMessage: 'Digite palavras como "sobre" para saber mais sobre o RenovaBR ou "lideranças" para saber sobre os selecionados, por exemplo.',
-		thirdMessage: 'Eu estou em um ambiente de teste, por isso a linguagem natural pode ser difícil de entender... 😕',
+		thirdMessage: 'Eu sou só a robô assistente do RenovaBR, a linguagem natural pode ser difícil de entender... 😕',
 		menuMsg: 'Você pode digitar novamente ou escolher as opções do menu',
 		askContact: 'Se quiser, posso te ajudar a entrar em contato com a equipe do RenovaBR para tirar suas dúvidas! Que tal?',
 		menuOptions: ['Vamos lá!', 'Agora não'],
