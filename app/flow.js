@@ -193,5 +193,8 @@ module.exports = {
 		menuPostback: ['cancel'],
 		endMessage: 'Obrigado! Agradecemos seu contato, estaremos respondendo sua dúvida via e-mail.',
 	},
+	blackList: {
+		firstMessage: 'Infelizmente, não entendo este tipo de manifestação. Que tal me fazer uma pergunta ou escolher uma das opções abaixo? ',
+	},
 
 };

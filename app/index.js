@@ -417,6 +417,9 @@ const handler = new MessengerHandler()
 				await context.sendButtonTemplate(flow.mainMenu.menuMsg, menuOptions);
 				await context.setState({ dialog: 'mainMenu' });
 				break;
+			case 'BlackList':
+				await context.sendButtonTemplate(flow.blackList.firstMessage, menuOptions);
+				break;
 			}
 		}
 	})
