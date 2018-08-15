@@ -48,9 +48,26 @@ function sendError(userName = 'erro', userText = 'entre em contato', userMail = 
 
 	transporter.sendMail(mailOptions, (error, info) => {
 		if (error) {
-			console.log(error);
-		} else {
+			console.log(`Couldn't send e-mail: ${error}`);
+		} else if (info) {
 			console.log(`Email sent: ${info.response}`);
+			// send confirmation e-mail to user
+			// const confirmation = {
+			// 	from: user,
+			// 	to: userMail,
+			// 	subject: 'RenovaBR: Recebemos sua dúvida!',
+			// 	text: `Olá, ${userName}.\nRecebemos a dúvida que você nos enviou. ` +
+			// 		'Iremos responder o mais breve possível.' +
+			// 		`\n\nVocê enviou: ${userText}` +
+			// 		`\n\n\nNão é você? Houve algum engano? Acredita que não deveria ter recebido esse e-mail? Reporte-nos em ${sendTo}`,
+			// };
+			// transporter.sendMail(confirmation, (error2, info2) => {
+			// 	if (error) {
+			// 		console.log(`Couldn't send user confirmation e-mail: ${error2}`);
+			// 	} else if (info2) {
+			// 		console.log(`Email sent: ${info2.response}`);
+			// 	}
+			// });
 		}
 	});
 }
