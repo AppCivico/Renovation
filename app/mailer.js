@@ -63,7 +63,7 @@ function sendError(userName = 'erro', userText = 'entre em contato', userMail = 
 			};
 			transporter.sendMail(confirmation, (error2, info2) => {
 				if (error) {
-					console.log(`Couldn't send user confirmation e-mail: ${error}`);
+					console.log(`Couldn't send user confirmation e-mail: ${error2}`);
 				} else if (info2) {
 					console.log(`Email sent: ${info2.response}`);
 				}
