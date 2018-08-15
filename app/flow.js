@@ -187,11 +187,11 @@ module.exports = {
 		afterMessage: 'Tudo bem. 😉',
 	},
 	email: {
-		firstMessage: 'Entendi! 👍',
+		firstMessage: '👍',
 		secondMessage: '\nAgora, por favor, digite seu e-mail:',
 		menuOptions: ['Cancelar'],
 		menuPostback: ['cancel'],
-		endMessage: 'Obrigado! Agradecemos seu contato, estaremos respondendo sua dúvida via e-mail.',
+		endMessage: 'Obrigada! A equipe do RenovaBR responderá sua dúvida por e-mail, assim que possível.',
 	},
 	blackList: {
 		firstMessage: 'Infelizmente, não entendo este tipo de manifestação. Que tal me fazer uma pergunta ou escolher uma das opções abaixo? ',
