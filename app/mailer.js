@@ -8,11 +8,15 @@ const sendTo = process.env.EMAIL_TO_RECEIVE;
 // const mailError = [];
 
 const transporter = nodemailer.createTransport({
-	service: 'Hotmail',
+	service: 'gmail',
+	// host: process.env.SMTP_SERVER,
+	// port: process.env.SMTP_PORT,
 	auth: {
 		user,
 		pass,
 	},
+	tls: { rejectUnauthorized: false },
+	debug: true,
 });
 
 
@@ -52,22 +56,22 @@ function sendError(userName = 'erro', userText = 'entre em contato', userMail = 
 		} else if (info) {
 			console.log(`Email sent: ${info.response}`);
 			// send confirmation e-mail to user
-			// const confirmation = {
-			// 	from: user,
-			// 	to: userMail,
-			// 	subject: 'RenovaBR: Recebemos sua dúvida!',
-			// 	text: `Olá, ${userName}.\nRecebemos a dúvida que você nos enviou. ` +
-			// 		'Iremos responder o mais breve possível.' +
-			// 		`\n\nVocê enviou: ${userText}` +
-			// 		`\n\n\nNão é você? Houve algum engano? Acredita que não deveria ter recebido esse e-mail? Reporte-nos em ${sendTo}`,
-			// };
-			// transporter.sendMail(confirmation, (error2, info2) => {
-			// 	if (error) {
-			// 		console.log(`Couldn't send user confirmation e-mail: ${error2}`);
-			// 	} else if (info2) {
-			// 		console.log(`Email sent: ${info2.response}`);
-			// 	}
-			// });
+			const confirmation = {
+				from: user,
+				to: userMail,
+				subject: 'RenovaBR: Recebemos sua dúvida!',
+				text: `Olá, ${userName}.\nRecebemos a dúvida que você nos enviou. ` +
+					'Iremos responder o mais breve possível.' +
+					`\n\nVocê enviou: ${userText}` +
+					`\n\n\nNão é você? Houve algum engano? Acredita que não deveria ter recebido esse e-mail? Reporte-nos em ${sendTo}`,
+			};
+			transporter.sendMail(confirmation, (error2, info2) => {
+				if (error) {
+					console.log(`Couldn't send user confirmation e-mail: ${error2}`);
+				} else if (info2) {
+					console.log(`Email sent: ${info2.response}`);
+				}
+			});
 		}
 	});
 }
