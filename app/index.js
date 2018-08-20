@@ -259,6 +259,7 @@ const handler = new MessengerHandler()
 				break;
 			case 'subscription':
 				await context.sendText(flow.subscription.firstMessage);
+				await attach.sendWithLink(context, flow.subscription);
 				await context.sendButtonTemplate(flow.subscription.endMessage, menuOptions);
 				break;
 			case 'position':
@@ -266,6 +267,10 @@ const handler = new MessengerHandler()
 				await context.sendText(flow.position.secondMessage);
 				await context.sendText(flow.position.site);
 				await attach.sendMenu(context, flow.position);
+				break;
+			case 'huck':
+				await context.sendText(flow.huck.firstMessage);
+				await attach.sendMenu(context, flow.financing);
 				break;
 			case 'payment':
 				await context.sendText(flow.payment.firstMessage);
@@ -302,6 +307,9 @@ const handler = new MessengerHandler()
 						payload: flow.payment.menuPostback[1],
 					},
 				]);
+				break;
+			case 'opinion':
+				await context.sendButtonTemplate(flow.opinion.firstMessage, menuOptions);
 				break;
 			case 'paymentEnd':
 				await context.sendButtonTemplate(flow.course.endMessage, menuOptions);
