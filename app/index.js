@@ -259,7 +259,6 @@ const handler = new MessengerHandler()
 				break;
 			case 'subscription':
 				await context.sendText(flow.subscription.firstMessage);
-				await context.sendText(flow.subscription.secondMessage);
 				await context.sendButtonTemplate(flow.subscription.endMessage, menuOptions);
 				break;
 			case 'position':
