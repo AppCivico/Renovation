@@ -63,6 +63,36 @@ async function send(context, links) {
 
 module.exports.send = send;
 
+async function sendWithLink(context, links) {
+	await context.sendAttachment({
+		type: 'template',
+		payload: {
+			template_type: 'generic',
+			elements: [
+				{
+					title: links.siteTitle,
+					image_url: links.imageURL,
+					default_action: {
+						type: 'web_url',
+						url: links.siteURL,
+						messenger_extensions: 'false',
+						webview_height_ratio: 'full',
+					},
+					buttons: [
+						{
+							type: 'web_url',
+							title: 'Vamos lá!',
+							url: links.siteURL,
+						},
+					],
+				},
+			],
+		},
+	});
+}
+
+module.exports.sendWithLink = sendWithLink;
+
 async function sendCarousel(context, links) {
 	await context.sendAttachment({
 		type: 'template',

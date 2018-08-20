@@ -114,18 +114,16 @@ module.exports = {
 			'http://renovabr.org/wp-content/uploads/2018/01/img-participate.jpg',
 			'http://renovabr.org/wp-content/uploads/2018/04/brasil-tem-jeito.png',
 		],
-		// .....old
-		// siteURL: ['http://renovabr.org/doe', 'http://renovabr.org/participe/'],
-		// imageURL: [
-		// 	'https://www.kickante.com.br/sites/default/files/styles/campaign_pitch_image/public/financiamento-coletivo/pitch/vamos_renovar_a_politica_do_brasil-717728.png?itok=4h6djkP6',
-		// 	'http://renovabr.org/wp-content/uploads/2018/01/img-participate.jpg',
-		// ],
 	},
 	subscription: {
 		firstMessage: 'Nossas pré inscrições estão abertas! Não deixe de acessar ' +
 			'https://apoie.renovabr.org/processoseletivo2019 para fazer parte da nossa capacitação que acontecerá em 2019 😀 ',
 		// secondMessage: 'Essa pergunta foi fácil! Me pergunte mais!',
 		endMessage: 'Vamos conversar mais! Você pode me perguntar ou escolher as opções. 😉',
+		// -- attachment
+		siteURL: 'https://apoie.renovabr.org/processoseletivo2019',
+		imageURL: 'https://d335luupugsy2.cloudfront.net/cms/files/57177/1534191549/$xh2q1rbkx0k',
+		siteTitle: 'Processo Seletivo | RenovaBR',
 	},
 	position: {
 		firstMessage: 'RenovaBR de esquerda ou de direita?',
@@ -192,6 +190,14 @@ module.exports = {
 		menuOptions: ['Cancelar'],
 		menuPostback: ['cancel'],
 		endMessage: 'Obrigada! A equipe do RenovaBR responderá sua dúvida por e-mail, assim que possível.',
+	},
+	opinion: {
+		firstMessage: 'As lideranças do RenovaBR têm liberdade de ideologia e posicionamento. Exigimos somente um compromisso com ' +
+		'quatro regras fundamentais: mandato, transparência, responsabilidade e impacto.😉',
+	},
+	huck: {
+		firstMessage: 'O Luciano Huck é um apoiador e entusiasta do RenovaBR, assim como outras centenas de brasileiros! ' +
+		'Se inscreva para o nosso time de voluntários para fazer parte desse grupo que acredita na renovação política! :)',
 	},
 	blackList: {
 		firstMessage: 'Infelizmente, não entendo este tipo de manifestação. Que tal me fazer uma pergunta ou escolher uma das opções abaixo? ',
