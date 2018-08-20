@@ -28,8 +28,8 @@ module.exports = {
 	},
 	about: {
 		firstMessage: 'O RenovaBR prepara gente comprometida e realizadora para entrar na política. Selecionamos novas lideranças do país inteiro para enfrentar ' +
-		'e vencer as velhas práticas. No lugar das campanhas milionárias, pessoas conversando com pessoas. Em vez do vale-tudo pelo poder, ' +
-		'propostas sinceras e soluções que se tornem realidade.',
+			'e vencer as velhas práticas. No lugar das campanhas milionárias, pessoas conversando com pessoas. Em vez do vale-tudo pelo poder, ' +
+			'propostas sinceras e soluções que se tornem realidade.',
 		secondMessage: 'O RenovaBR surgiu em outubro de 2017 da necessidade da sociedade de sair do discurso para ações concretas para melhorar a política brasileira.',
 		thirdMessage: ' Queremos fazer com que o brasileiro volte a acreditar e participar da política.',
 		menuOptions: ['Conta mais', 'Voltar', 'Entendi'],
@@ -37,9 +37,9 @@ module.exports = {
 	},
 	scholarship: {
 		firstMessage: 'Temos homens e mulheres de diversos partidos do país inteiro, com diferentes ideias, mas que têm em comum a crença de que política é lugar de ' +
-		'honestidade, diálogo e dedicação.',
+			'honestidade, diálogo e dedicação.',
 		secondMessage: 'Gente que conhece de perto nossos problemas e tem disposição e capacidade para enfrentá-los. 👊 Acesse o nosso site ' +
-		'www.renovabr.org/bolsistas para conhecer melhor cada liderança. 🙂',
+			'www.renovabr.org/bolsistas para conhecer melhor cada liderança. 🙂',
 		image: '<aquele link pro site aqui>',
 		menuMsg: 'Que tal?',
 		menuOptions: ['Conta mais', 'Avançar', 'Entendi'],
@@ -47,8 +47,8 @@ module.exports = {
 		// -- more
 		// thirdMessage: 'Sabe quantos candidatos o RenovaBR pretende lançar?',
 		fourthMessage: 'O objetivo é formar lideranças políticas com conhecimento da realidade brasileira para que eles tomem a decisão de lançarem candidaturas ou não. ' +
-		'O RenovaBR não é um partido político. 👍 É uma escola de excelência na capacitação e fomento de novos líderes para fazer a tão desejada renovação política. ' +
-		'👊',
+			'O RenovaBR não é um partido político. 👍 É uma escola de excelência na capacitação e fomento de novos líderes para fazer a tão desejada renovação política. ' +
+			'👊',
 		// -- end
 		extraMessage: 'Legal, né?',
 		endMessage: 'Vamos conversar mais! Você pode me perguntar ou escolher as opções: 😉',
@@ -60,7 +60,7 @@ module.exports = {
 	course: {
 		firstMessage: 'O curso do RenovaBR mescla aulas presenciais e à distância. A carga horária total é de 240 horas. Entre atividades obrigatórias e eletivas.',
 		secondMessage: 'Os integrantes do RenovaBR têm disciplinas de liderança, funcionamento do Legislativo, Teoria Geral do Estado, novas experiências políticas, ' +
-		'papel do Estado, eficiência do Governo, desafios do Brasil, Direito Eleitoral, cenário eleitoral, marketing político e media training, entre outros.',
+			'papel do Estado, eficiência do Governo, desafios do Brasil, Direito Eleitoral, cenário eleitoral, marketing político e media training, entre outros.',
 		excuseMe: 'Foi mal pelo textão, mas acho que respondi, né? 😀',
 		menuMsg: 'Que tal?',
 		menuOptions: ['Conta mais', 'Avançar', 'Entendi'],
@@ -68,15 +68,15 @@ module.exports = {
 		// -- more
 		thirdMessage: 'Sabe o que difere o curso do RenovaBR das formações feitas pelos partidos?',
 		fourthMessage: 'A diferença é que no RenovaBR os problemas estão no centro das discussões. Há bolsistas liberais, progressistas, conservadores, socialistas, trabalhistas, ' +
-		'enfim, de todos os pensamentos políticos atuais. O foco de todos é encontrar a solução para os principais problemas do país com diálogo e convergência de objetivos.',
+			'enfim, de todos os pensamentos políticos atuais. O foco de todos é encontrar a solução para os principais problemas do país com diálogo e convergência de objetivos.',
 		fifthMessage: 'As lideranças não são rotuladas como de “esquerda” ou de “direita”. O RenovaBR é um meio de defender princípios na política. ' +
-		'Por isso, o RenovaBR é um projeto inédito no mundo.',
+			'Por isso, o RenovaBR é um projeto inédito no mundo.',
 		// -- end
 		endMessage: 'Vamos conversar mais! Você pode me perguntar ou escolher as opções. 😉',
 	},
 	payment: {
 		firstMessage: 'Para que as lideranças RenovaBR possam se dedicar exclusivamente ao processo de formação, eles recebem uma bolsa mensal entre R$ 5mil e R$ 12mil, ' +
-		'calculada com base no rendimento médio nominal mensal, de acordo com a Pesquisa Nacional de Amostra por Domicílio(PNAD), divulgada IBGE.',
+			'calculada com base no rendimento médio nominal mensal, de acordo com a Pesquisa Nacional de Amostra por Domicílio(PNAD), divulgada IBGE.',
 		secondMessage: 'E uma curiosidade: Alguns abriram mão da bolsa e mantêm suas despesas por conta própria. 😱',
 		thirdMessage: 'Frisamos que não haverá qualquer tipo de investimento, pelo RenovaBR, em futuras campanhas políticas. 😉',
 		menuMsg: 'Tem muita coisa para contar! 😊',
@@ -85,7 +85,7 @@ module.exports = {
 		// -- more
 		fourthMessage: 'Você deve estar se perguntando. O que o RenovaBR espera em contrapartida... simples!',
 		fifthMessage: 'As lideranças do RenovaBR têm liberdade de ideologia e posicionamento. A única contrapartida que o RenovaBR exige de seus membros ' +
-		'é a assinatura de um compromisso com quatro regras fundamentais.',
+			'é a assinatura de um compromisso com quatro regras fundamentais.',
 		// rules
 		rulePresentation: 'As quatros fundamentais regras que nossos membros seguem são:',
 		firstRule: 'MANDATO: Trabalhar no cargo até o último dia. O voto é um ato de confiança e deve ser respeitado. Chega de trampolim político.',
@@ -122,15 +122,15 @@ module.exports = {
 		// ],
 	},
 	subscription: {
-		firstMessage: 'As inscrições já foram encerradas, mas acompanhe as nossas redes sociais, ' +
-		'logo logo divulgaremos para ficar por dentro de todas as nossas novidades!',
-		secondMessage: 'Essa pergunta foi fácil! Me pergunte mais!',
+		firstMessage: 'Nossas pré inscrições estão abertas! Não deixe de acessar ' +
+			'https://apoie.renovabr.org/processoseletivo2019 para fazer parte da nossa capacitação que acontecerá em 2019 😀 ',
+		// secondMessage: 'Essa pergunta foi fácil! Me pergunte mais!',
 		endMessage: 'Vamos conversar mais! Você pode me perguntar ou escolher as opções. 😉',
 	},
 	position: {
 		firstMessage: 'RenovaBR de esquerda ou de direita?',
 		secondMessage: 'O RenovaBR não é um partido político. \nAs lideranças do RenovaBR têm liberdade de ideologia e posicionamento. ' +
-		'Temos lideranças de diversos espectros políticos, dá uma olhada aqui para conhecê-los melhor:',
+			'Temos lideranças de diversos espectros políticos, dá uma olhada aqui para conhecê-los melhor:',
 		site: 'http://renovabr.org/bolsistas/',
 		endMessage: 'Vamos conversar mais! Você pode me perguntar ou escolher as opções. 😉',
 		// -- attachment
@@ -146,7 +146,7 @@ module.exports = {
 		// -- more
 		thirdMessage: 'Queria te contar sobre a banca seletora.',
 		fourthMessage: 'Depois dos testes da fase online, os pré-selecionados passaram por entrevistas individuais com membros do nosso time. ' +
-		'Após essa fase, participaram da banca, conduzida por especialistas de diversas áreas e repertórios. 😉', // used on +board
+			'Após essa fase, participaram da banca, conduzida por especialistas de diversas áreas e repertórios. 😉', // used on +board
 		excuseMe: 'Foi mal pelo textão, mas acho que respondi, né? 😀',
 		// -- end
 		endMessage: 'Você pode me perguntar algo digitando uma palavra-chave ou escolher as opções. 😉',
@@ -166,9 +166,9 @@ module.exports = {
 		firstMessage: 'Todo cidadão pode entrar em contato conosco pelo nosso portal:\n',
 		siteURL: 'http://renovabr.org/central-de-transparencia/',
 		secondMessage: 'Siga-nos nas redes sociais:' +
-		'\nTwitter: https://twitter.com/renova_br' +
-		'\nInstagram: https://www.instagram.com/renovabr/' +
-		'\nFacebook: https://www.facebook.com/BrasilRenova/',
+			'\nTwitter: https://twitter.com/renova_br' +
+			'\nInstagram: https://www.instagram.com/renovabr/' +
+			'\nFacebook: https://www.facebook.com/BrasilRenova/',
 	},
 	error: {
 		firstMessage: 'Eu não entendi, me desculpa? 😔',
