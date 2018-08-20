@@ -62,6 +62,11 @@ typings/
 # dotenv environment variables file
 .env
 
+# run docker file
 run-container.sh
 
+# bottender sessions folder
 .sessions
+
+# vscode configuration folder
+.vscode
