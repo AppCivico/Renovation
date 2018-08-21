@@ -116,7 +116,7 @@ const handler = new MessengerHandler()
 						}
 					} else {
 						await context.sendImage(flow.submenu.likeImage);
-						await context.setState({ dialog: '' });
+						await context.setState({ dialog: 'mainMenu' });
 					}
 				}
 			} else if (context.event.hasAttachment || context.event.isLikeSticker ||
