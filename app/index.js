@@ -101,14 +101,7 @@ const handler = new MessengerHandler()
 						if (context.event.message.text === process.env.RESTART) {
 							await context.resetState();
 							await context.setState({ dialog: 'greetings' });
-						} else if (context.state.userDoubt.length <= 250) {
-							await context.setState({ userText: context.event.message.text });
-							const response = await app.textRequest(context.state.userDoubt, {
-								sessionId: context.session.user.id,
-							});
-							// console.log(response.result.metadata.intentName);
-							await context.setState({ dialog: response.result.metadata.intentName });
-						} else { // string has more than 250 chars
+						} else if (context.state.userDoubt.length >= 250) { // string has more than 250 chars
 							await context.sendButtonTemplate(flow.charLimit.firstMessage, [
 								{
 									type: 'postback',
@@ -121,8 +114,17 @@ const handler = new MessengerHandler()
 									payload: flow.charLimit.menuPostback[1],
 								},
 							]);
+							await context.setState({ dialog: '' });
+						} else {
+							await context.setState({ userText: context.event.message.text });
+							await context.setState({
+								response: await app.textRequest(context.state.userDoubt, {
+									sessionId: context.session.user.id,
+								}),
+							});
+							// console.log(context.state.response.result.metadata.intentName);
+							await context.setState({ dialog: context.state.response.result.metadata.intentName });
 						}
-						await context.setState({ dialog: '' });
 					} else {
 						await context.sendImage(flow.submenu.likeImage);
 						await context.setState({ dialog: '' });
