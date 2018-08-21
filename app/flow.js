@@ -191,6 +191,9 @@ module.exports = {
 		menuPostback: ['cancel'],
 		endMessage: 'Obrigada! A equipe do RenovaBR responderá sua dúvida por e-mail, assim que possível.',
 	},
+	charLimit: {
+		firstMessage: 'Para que eu consiga encontrar a melhor resposta para você, que tal fazer sua pergunta em poucas palavras ou escolher uma das opções abaixo?',
+	},
 	opinion: {
 		firstMessage: 'As lideranças do RenovaBR têm liberdade de ideologia e posicionamento. Exigimos somente um compromisso com ' +
 		'quatro regras fundamentais: mandato, transparência, responsabilidade e impacto.😉',

@@ -94,18 +94,25 @@ const handler = new MessengerHandler()
 				if (context.state.dialog !== 'doubt' && context.state.dialog !== 'email' && context.state.dialog !== 'send') {
 					await context.typingOn();
 					// removing emojis from message
-					const payload = await context.event.message.text.replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, '');
-					if (payload) { // check if string isn't empty after removing emojis
+					await context.setState({
+						userDoubt: await context.event.message.text.replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''),
+					});
+					if (context.state.userDoubt) { // check if string isn't empty after removing emojis
 						if (context.event.message.text === process.env.RESTART) {
 							await context.resetState();
 							await context.setState({ dialog: 'greetings' });
+						} else if (context.state.userDoubt.length >= 250) { // string has more than 250 chars
+							await context.sendButtonTemplate(flow.charLimit.firstMessage, menuOptions);
+							await context.setState({ dialog: '' });
 						} else {
 							await context.setState({ userText: context.event.message.text });
-							const response = await app.textRequest(payload, {
-								sessionId: context.session.user.id,
+							await context.setState({
+								response: await app.textRequest(context.state.userDoubt, {
+									sessionId: context.session.user.id,
+								}),
 							});
-							// console.log(response.result.metadata.intentName);
-							await context.setState({ dialog: response.result.metadata.intentName });
+							// console.log(context.state.response.result.metadata.intentName);
+							await context.setState({ dialog: context.state.response.result.metadata.intentName });
 						}
 					} else {
 						await context.sendImage(flow.submenu.likeImage);
@@ -435,7 +442,7 @@ const handler = new MessengerHandler()
 		console.log('\n');
 		console.log(`Parece que aconteceu um erro as ${date.toLocaleTimeString('pt-BR')} de ${date.getDate()}/${date.getMonth() + 1} =>`);
 		console.log(err);
-		console.log(`Usuário => ${context.session.user.first_name} ${context.session.user.last_name}`);
+		console.log(`Usuário => ${context.session.user.first_name} ${context.session.user.last_name}\n\n`);
 
 		await context.typingOff();
 		await context.sendText(flow.error.firstMessage);
