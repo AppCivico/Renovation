@@ -4,11 +4,12 @@ const nodemailer = require('nodemailer');
 const user = process.env.SENDER_EMAIL;
 const pass = process.env.SENDER_PASSWORD;
 const sendTo = process.env.EMAIL_TO_RECEIVE;
+const service = process.env.SERVICE;
 
 // const mailError = [];
 
 const transporter = nodemailer.createTransport({
-	service: 'gmail',
+	service,
 	// host: process.env.SMTP_SERVER,
 	// port: process.env.SMTP_PORT,
 	auth: {
@@ -51,6 +52,7 @@ function sendError(userName = 'erro', userText = 'entre em contato', userMail = 
 	};
 
 	transporter.sendMail(mailOptions, (error, info) => {
+		console.log(`User ${userName} mail status:`);
 		if (error) {
 			console.log(`Couldn't send e-mail: ${error}`);
 		} else if (info) {

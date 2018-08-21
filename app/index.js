@@ -94,22 +94,38 @@ const handler = new MessengerHandler()
 				if (context.state.dialog !== 'doubt' && context.state.dialog !== 'email' && context.state.dialog !== 'send') {
 					await context.typingOn();
 					// removing emojis from message
-					const payload = await context.event.message.text.replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, '');
-					if (payload) { // check if string isn't empty after removing emojis
+					await context.setState({
+						userDoubt: await context.event.message.text.replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''),
+					});
+					if (context.state.userDoubt) { // check if string isn't empty after removing emojis
 						if (context.event.message.text === process.env.RESTART) {
 							await context.resetState();
 							await context.setState({ dialog: 'greetings' });
-						} else {
+						} else if (context.state.userDoubt.length <= 250) {
 							await context.setState({ userText: context.event.message.text });
-							const response = await app.textRequest(payload, {
+							const response = await app.textRequest(context.state.userDoubt, {
 								sessionId: context.session.user.id,
 							});
 							// console.log(response.result.metadata.intentName);
 							await context.setState({ dialog: response.result.metadata.intentName });
+						} else { // string has more than 250 chars
+							await context.sendButtonTemplate(flow.charLimit.firstMessage, [
+								{
+									type: 'postback',
+									title: flow.charLimit.menuOptions[0],
+									payload: flow.charLimit.menuPostback[0],
+								},
+								{
+									type: 'postback',
+									title: flow.charLimit.menuOptions[1],
+									payload: flow.charLimit.menuPostback[1],
+								},
+							]);
 						}
+						await context.setState({ dialog: '' });
 					} else {
 						await context.sendImage(flow.submenu.likeImage);
-						await context.setState({ dialog: 'mainMenu' });
+						await context.setState({ dialog: '' });
 					}
 				}
 			} else if (context.event.hasAttachment || context.event.isLikeSticker ||
@@ -435,7 +451,7 @@ const handler = new MessengerHandler()
 		console.log('\n');
 		console.log(`Parece que aconteceu um erro as ${date.toLocaleTimeString('pt-BR')} de ${date.getDate()}/${date.getMonth() + 1} =>`);
 		console.log(err);
-		console.log(`Usuário => ${context.session.user.first_name} ${context.session.user.last_name}`);
+		console.log(`Usuário => ${context.session.user.first_name} ${context.session.user.last_name}\n\n`);
 
 		await context.typingOff();
 		await context.sendText(flow.error.firstMessage);
