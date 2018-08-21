@@ -102,18 +102,7 @@ const handler = new MessengerHandler()
 							await context.resetState();
 							await context.setState({ dialog: 'greetings' });
 						} else if (context.state.userDoubt.length >= 250) { // string has more than 250 chars
-							await context.sendButtonTemplate(flow.charLimit.firstMessage, [
-								{
-									type: 'postback',
-									title: flow.charLimit.menuOptions[0],
-									payload: flow.charLimit.menuPostback[0],
-								},
-								{
-									type: 'postback',
-									title: flow.charLimit.menuOptions[1],
-									payload: flow.charLimit.menuPostback[1],
-								},
-							]);
+							await context.sendButtonTemplate(flow.charLimit.firstMessage, menuOptions);
 							await context.setState({ dialog: '' });
 						} else {
 							await context.setState({ userText: context.event.message.text });
