@@ -203,7 +203,7 @@ module.exports = {
 			'Se inscreva para o nosso time de voluntários para fazer parte desse grupo que acredita na renovação política! :)',
 	},
 	thanks: {
-		firstMessage: 'Obrigada. Contamos com seu apoio para melhorar o país.',
+		firstMessage: 'Agradeço pelo seu interesse. Qualquer outra dúvida estamos por aqui! 😀',
 	},
 	blackList: {
 		firstMessage: 'Infelizmente, não entendo este tipo de manifestação. Que tal me fazer uma pergunta ou escolher uma das opções abaixo? ',
