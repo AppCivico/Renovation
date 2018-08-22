@@ -196,11 +196,14 @@ module.exports = {
 	},
 	opinion: {
 		firstMessage: 'As lideranças do RenovaBR têm liberdade de ideologia e posicionamento. Exigimos somente um compromisso com ' +
-		'quatro regras fundamentais: mandato, transparência, responsabilidade e impacto.😉',
+			'quatro regras fundamentais: mandato, transparência, responsabilidade e impacto.😉',
 	},
 	huck: {
 		firstMessage: 'O Luciano Huck é um apoiador e entusiasta do RenovaBR, assim como outras centenas de brasileiros! ' +
-		'Se inscreva para o nosso time de voluntários para fazer parte desse grupo que acredita na renovação política! :)',
+			'Se inscreva para o nosso time de voluntários para fazer parte desse grupo que acredita na renovação política! :)',
+	},
+	thanks: {
+		firstMessage: 'Agradeço pelo seu interesse. Qualquer outra dúvida estamos por aqui! 😀',
 	},
 	blackList: {
 		firstMessage: 'Infelizmente, não entendo este tipo de manifestação. Que tal me fazer uma pergunta ou escolher uma das opções abaixo? ',

@@ -56,8 +56,8 @@ if (messageWaiting) {
 const handler = new MessengerHandler()
 	.onEvent(async (context) => {
 		if (!context.event.isDelivery && !context.event.isEcho && !context.event.isRead) {
-		// check if enough time has passed so we can send a welcome back message
-		// now - lastActivity >= timeLimit
+			// check if enough time has passed so we can send a welcome back message
+			// now - lastActivity >= timeLimit
 			if ((context.event.rawEvent.timestamp - context.session.lastActivity) >= timeLimit) {
 				if (context.session.user.first_name) { // check if first_name to avoid an 'undefined' value
 					await context.sendText(`Olá, ${context.session.user.first_name}! ${flow.greetings.comeBack}`);
@@ -120,26 +120,26 @@ const handler = new MessengerHandler()
 					}
 				}
 			} else if (context.event.hasAttachment || context.event.isLikeSticker ||
-			context.event.isFile || context.event.isVideo || context.event.isAudio ||
-			context.event.isImage || context.event.isFallback) {
-			// const attachment = context.event.message.attachments[0];
-			// const stickerNum = attachment.payload.sticker_id;
-			// if (stickerNum !== undefined) {
-			// 	if (stickerNum === 369239343222814) {
-			// 		console.log('Got a big thumbs up image');
-			// 	} else if (stickerNum === 369239263222822) {
-			// 		console.log('Got a regular thumbs up image');
-			// 	} else {
-			// 		console.log('Got unidentified sticker id: %s', stickerNum);
-			// 	}
-			// }
+				context.event.isFile || context.event.isVideo || context.event.isAudio ||
+				context.event.isImage || context.event.isFallback) {
+				// const attachment = context.event.message.attachments[0];
+				// const stickerNum = attachment.payload.sticker_id;
+				// if (stickerNum !== undefined) {
+				// 	if (stickerNum === 369239343222814) {
+				// 		console.log('Got a big thumbs up image');
+				// 	} else if (stickerNum === 369239263222822) {
+				// 		console.log('Got a regular thumbs up image');
+				// 	} else {
+				// 		console.log('Got unidentified sticker id: %s', stickerNum);
+				// 	}
+				// }
 				await context.sendImage(flow.submenu.likeImage);
 				await context.setState({ dialog: 'mainMenu' });
 			}
 
 			switch (context.state.dialog) {
 			case 'greetings':
-			// await context.sendImage(flow.greetings.greetImage);
+				// await context.sendImage(flow.greetings.greetImage);
 				await context.sendText(flow.greetings.firstMessage);
 				await context.sendText(flow.greetings.secondMessage);
 				await context.sendButtonTemplate(flow.submenu.menuMsg, [
@@ -211,8 +211,8 @@ const handler = new MessengerHandler()
 				]);
 				break;
 			case 'scholarshipMore':
-			// await context.sendText(flow.scholarship.thirdMessage);
-			// falls through
+				// await context.sendText(flow.scholarship.thirdMessage);
+				// falls through
 			case 'release':
 				await context.sendText(flow.scholarship.fourthMessage);
 				await context.sendText(flow.scholarship.extraMessage);
@@ -255,7 +255,7 @@ const handler = new MessengerHandler()
 				break;
 			case 'courseMore':
 				await context.sendText(flow.course.thirdMessage);
-			// falls through
+				// falls through
 			case 'difference':
 				await context.sendText(flow.course.fourthMessage);
 				await context.sendText(flow.course.fifthMessage);
@@ -282,7 +282,7 @@ const handler = new MessengerHandler()
 			case 'payment':
 				await context.sendText(flow.payment.firstMessage);
 				await context.sendText(flow.payment.secondMessage);
-			// falls through
+				// falls through
 			case 'campaign':
 				await context.sendText(flow.payment.thirdMessage);
 				await context.sendButtonTemplate(flow.payment.menuMsg, [
@@ -343,6 +343,9 @@ const handler = new MessengerHandler()
 						payload: flow.interview.menuPostback[1],
 					},
 				]);
+				break;
+			case 'thanks':
+				await context.sendButtonTemplate(flow.thanks.firstMessage, menuOptions);
 				break;
 			case 'interviewMore':
 				await context.sendText(flow.interview.thirdMessage);
@@ -419,8 +422,8 @@ const handler = new MessengerHandler()
 				await context.setState({ dialog: 'listeningEmail' });
 				break;
 			case 'send':
-			// console.log('email', context.state.userMail);
-			// console.log('doubt', context.state.userDoubt);
+				// console.log('email', context.state.userMail);
+				// console.log('doubt', context.state.userDoubt);
 				mailer.sendError(
 					`${context.session.user.first_name} ${context.session.user.last_name}`,
 					context.state.userDoubt, context.state.userMail // eslint-disable-line comma-dangle
